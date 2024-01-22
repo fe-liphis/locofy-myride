@@ -1,7 +1,9 @@
+import Logo from "../UI/Logo/Logo";
+
 function Header() {
   return (
     <header>
-      <h1>My Ride</h1>
+      <Logo />
       <nav>
         <ul>
           <li>
