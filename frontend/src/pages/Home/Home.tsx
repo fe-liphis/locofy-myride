@@ -1,5 +1,11 @@
+import FormHome from "./FormHome/FormHome";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <FormHome />
+    </>
+  );
 }
 
 export default Home;

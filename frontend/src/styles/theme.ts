@@ -4,6 +4,7 @@ const theme = {
       primary: "#FFFFFF",
       secondary: "#FBA403",
       tertiary: "#B3B3B3",
+      quaternary: "#666666DE",
     },
     weight: {
       xs: 400,
