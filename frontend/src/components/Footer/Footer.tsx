@@ -1,70 +1,81 @@
+import Logo from "../UI/Logo/Logo";
+import {
+  FooterContainer,
+  FooterItemList,
+  FooterList,
+  FooterListTitle,
+  FooterSubtitle,
+} from "./styles";
+
 function Footer() {
   return (
-    <footer>
+    <FooterContainer>
       <article>
-        <h1>LOGO</h1>
-        <p>MyRide Inc., 2nd Floor, New York, NY 10016</p>
-        <ul>
+        <Logo color="#FFFFFF" height="60.13" width="125.63" />
+        <FooterSubtitle>
+          MyRide Inc., 2nd Floor, New York, NY 10016
+        </FooterSubtitle>
+        <FooterList>
           <li>
-            <a href="">Face</a>
+            <FooterItemList>Face</FooterItemList>
           </li>
           <li>
-            <a href="">Insta</a>
+            <FooterItemList>Insta</FooterItemList>
           </li>
           <li>
-            <a href="">Twitter</a>
+            <FooterItemList>Twitter</FooterItemList>
           </li>
-        </ul>
+        </FooterList>
       </article>
       <section>
-        <h5>Company</h5>
-        <ul>
+        <FooterListTitle>Company</FooterListTitle>
+        <FooterList>
           <li>
-            <a href="">About Us</a>
+            <FooterItemList>About Us</FooterItemList>
           </li>
           <li>
-            <a href="">News</a>
+            <FooterItemList>News</FooterItemList>
           </li>
           <li>
-            <a href="">Careers</a>
+            <FooterItemList>Careers</FooterItemList>
           </li>
           <li>
-            <a href="">How we work</a>
+            <FooterItemList>How we work</FooterItemList>
           </li>
-        </ul>
+        </FooterList>
       </section>
       <section>
-        <h5>Support</h5>
-        <ul>
+        <FooterListTitle>Support</FooterListTitle>
+        <FooterList>
           <li>
-            <a href="">FAQ</a>
+            <FooterItemList>FAQ</FooterItemList>
           </li>
           <li>
-            <a href="">US Office</a>
+            <FooterItemList>US Office</FooterItemList>
           </li>
           <li>
-            <a href="">Asia Office</a>
+            <FooterItemList>Asia Office</FooterItemList>
           </li>
           <li>
-            <a href="">Help Center</a>
+            <FooterItemList>Help Center</FooterItemList>
           </li>
-        </ul>
+        </FooterList>
       </section>
       <section>
-        <h5>More</h5>
-        <ul>
+        <FooterListTitle>More</FooterListTitle>
+        <FooterList>
           <li>
-            <a href="">Become a partner</a>
+            <FooterItemList>Become a partner</FooterItemList>
           </li>
           <li>
-            <a href="">Partner Support</a>
+            <FooterItemList>Partner Support</FooterItemList>
           </li>
           <li>
-            <a href="">Mobile app links</a>
+            <FooterItemList>Mobile app links</FooterItemList>
           </li>
-        </ul>
+        </FooterList>
       </section>
-    </footer>
+    </FooterContainer>
   );
 }
 
