@@ -18,9 +18,12 @@ export const FooterList = styled.ul`
 
 export const FooterItemList = styled.a`
   text-decoration: none;
+  font-size: ${(props) => props.theme.fonts.size.s};
   color: ${(props) => props.theme.fonts.palette.primary};
 `;
 
 export const FooterListTitle = styled.h5`
+  font-size: ${(props) => props.theme.fonts.size.m};
+  font-weight: ${(props) => props.theme.fonts.weight.md};
   color: ${(props) => props.theme.fonts.palette.primary};
 `;
