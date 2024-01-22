@@ -1,25 +1,11 @@
 import Logo from "../UI/Logo/Logo";
+import NavBar from "./NavBar";
 
 function Header() {
   return (
     <header>
       <Logo />
-      <nav>
-        <ul>
-          <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">Getting a Taxi</a>
-          </li>
-          <li>
-            <a href="">Mobile App</a>
-          </li>
-          <li>
-            <a href="">Contact Us</a>
-          </li>
-        </ul>
-      </nav>
+      <NavBar />
       <menu>
         <button>Notificacao</button>
         <button>Pessoa</button>
