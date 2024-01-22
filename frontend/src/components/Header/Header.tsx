@@ -1,16 +1,15 @@
 import Logo from "../UI/Logo/Logo";
 import NavBar from "./NavBar";
+import { HeaderContainer } from "./styles";
+import MenuButtons from "./MenuButtons";
 
 function Header() {
   return (
-    <header>
+    <HeaderContainer>
       <Logo />
       <NavBar />
-      <menu>
-        <button>Notificacao</button>
-        <button>Pessoa</button>
-      </menu>
-    </header>
+      <MenuButtons />
+    </HeaderContainer>
   );
 }
 
