@@ -1,32 +1,44 @@
 import Logo from "../UI/Logo/Logo";
 import {
+  FooterArticleContainer,
   FooterContainer,
   FooterItemList,
   FooterList,
   FooterListTitle,
+  FooterSocialsContainer,
   FooterSubtitle,
 } from "./styles";
+
+import face_logo from "../../assets/Facebook.svg";
+import instagram_logo from "../../assets/instagram_logo.svg";
+import twitter_logo from "../../assets/twitter_logo.svg";
 
 function Footer() {
   return (
     <FooterContainer>
-      <article>
+      <FooterArticleContainer>
         <Logo color="#FFFFFF" height="60.13" width="125.63" />
         <FooterSubtitle>
           MyRide Inc., 2nd Floor, New York, NY 10016
         </FooterSubtitle>
-        <FooterList>
+        <FooterSocialsContainer>
           <li>
-            <FooterItemList>Face</FooterItemList>
+            <a href="">
+              <img src={face_logo} alt="Facebook Logo" />
+            </a>
           </li>
           <li>
-            <FooterItemList>Insta</FooterItemList>
+            <a href="">
+              <img src={instagram_logo} alt="Instagram Logo" />
+            </a>
           </li>
           <li>
-            <FooterItemList>Twitter</FooterItemList>
+            <a href="">
+              <img src={twitter_logo} alt="Twitter Logo" />
+            </a>
           </li>
-        </FooterList>
-      </article>
+        </FooterSocialsContainer>
+      </FooterArticleContainer>
       <section>
         <FooterListTitle>Company</FooterListTitle>
         <FooterList>
