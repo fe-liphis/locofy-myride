@@ -74,7 +74,7 @@ function FormHome() {
     register,
   } = form;
 
-  console.log(errors);
+  console.log(control);
 
   useEffect(() => {
     async function fetchCoutries() {
@@ -170,7 +170,7 @@ function FormHome() {
             )}
           />
           {errors.country && (
-            <FormHelperText>{errors.country?.message}</FormHelperText>
+            <FormHelperText error>Invalid country</FormHelperText>
           )}
         </FormControl>
         <FormControl>
@@ -200,9 +200,7 @@ function FormHome() {
               </>
             )}
           />
-          {errors.city && (
-            <FormHelperText>{errors.city?.message}</FormHelperText>
-          )}
+          {errors.city && <FormHelperText error>Invalid city</FormHelperText>}
         </FormControl>
         <TextFieldStyled
           id="code"
@@ -312,7 +310,7 @@ function FormHome() {
               </GroupRadio>
             </CarTypeContainer>
             {errors.carType && (
-              <FormHelperText>{errors.carType?.message}</FormHelperText>
+              <FormHelperText error>{errors.carType?.message}</FormHelperText>
             )}
           </fieldset>
         )}
