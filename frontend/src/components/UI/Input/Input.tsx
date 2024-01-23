@@ -1,3 +1,4 @@
+import { useTheme } from "styled-components";
 import { TextFieldStyled } from "./styles";
 
 type InputProps = {
@@ -6,8 +7,17 @@ type InputProps = {
 };
 
 function Input({ label, id }: InputProps) {
+  const theme = useTheme();
+
   return (
-    <TextFieldStyled id="outlined-basic" label="Outlined" variant="outlined" />
+    <TextFieldStyled
+      sx={{
+        ":hover": {},
+      }}
+      id="outlined-basic"
+      label="Outlined"
+      variant="outlined"
+    />
   );
 }
 
