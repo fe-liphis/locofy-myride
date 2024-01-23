@@ -7,6 +7,7 @@ import {
 } from "./styles";
 
 import form_image from "../../../assets/form_image.png";
+import Switch from "../../../components/UI/Switch/Switch";
 
 function FormHome() {
   return (
@@ -25,6 +26,10 @@ function FormHome() {
         <Input id="name" label="Full Name" name="name" />
         <Input id="email" label="Email" name="email" />
         <Input id="code" label="Referal Code" name="code" />
+        <fieldset>
+          <legend>Select your car type</legend>
+          <Switch />
+        </fieldset>
       </FormHomeContainer>
     </>
   );

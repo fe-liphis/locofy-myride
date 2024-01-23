@@ -1,7 +1,7 @@
-
+import { YellowSwitch } from "./styles";
 
 function Switch() {
-  return <div>Switch</div>;
+  return <YellowSwitch />;
 }
 
 export default Switch;
