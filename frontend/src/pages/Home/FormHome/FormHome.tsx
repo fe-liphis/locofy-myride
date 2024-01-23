@@ -23,6 +23,8 @@ function FormHome() {
           </div>
         </FormHeader>
         <Input id="name" label="Full Name" name="name" />
+        <Input id="email" label="Email" name="email" />
+        <Input id="code" label="Referal Code" name="code" />
       </FormHomeContainer>
     </>
   );
