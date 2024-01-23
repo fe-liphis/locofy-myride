@@ -12,12 +12,7 @@ import form_image from "../../../assets/form_image.png";
 import Switch from "../../../components/UI/Switch/Switch";
 import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-} from "@mui/material";
+import { FormHelperText, InputLabel, MenuItem } from "@mui/material";
 
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
@@ -26,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
+import { FormControlSelect } from "../../../components/UI/Select/styles";
 
 type FormValues = {
   fullName: string;
@@ -144,7 +140,7 @@ function FormHome() {
           helperText={errors.email?.message}
           {...register("email")}
         />
-        <FormControl>
+        <FormControlSelect>
           <InputLabel>Country</InputLabel>
           <Controller
             name="country"
@@ -172,8 +168,8 @@ function FormHome() {
           {errors.country && (
             <FormHelperText error>Invalid country</FormHelperText>
           )}
-        </FormControl>
-        <FormControl>
+        </FormControlSelect>
+        <FormControlSelect>
           <InputLabel>City</InputLabel>
           <Controller
             name="city"
@@ -201,7 +197,7 @@ function FormHome() {
             )}
           />
           {errors.city && <FormHelperText error>Invalid city</FormHelperText>}
-        </FormControl>
+        </FormControlSelect>
         <TextFieldStyled
           id="code"
           label="Referal Code"
