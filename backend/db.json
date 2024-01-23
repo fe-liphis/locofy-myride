@@ -1,13 +1,49 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title" },
-    { "id": "2", "title": "another title" }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "driver": [
+    {
+      "id": "dc3d",
+      "fullName": "Felipe Gabriel",
+      "email": "felipe@gmail.com",
+      "country": "Algeria",
+      "city": "city",
+      "code": "ABC-123",
+      "carType": "on"
+    },
+    {
+      "id": "f366",
+      "fullName": "Felipe Gabriel",
+      "email": "felipe@gmail.com",
+      "country": "Algeria",
+      "city": "city",
+      "code": "ABC-123",
+      "carType": "on"
+    },
+    {
+      "id": "4878",
+      "fullName": "Felipe Gabriel",
+      "email": "felipe@gmail.com",
+      "country": "Afghanistan",
+      "city": "city",
+      "code": "AVC-123",
+      "carType": "on"
+    },
+    {
+      "id": "aa83",
+      "fullName": "Teste Teste",
+      "email": "teste@gmail.copm",
+      "country": "Albania",
+      "city": "city",
+      "code": "abc-123",
+      "carType": "suvVan"
+    },
+    {
+      "id": "53b5",
+      "fullName": "Felipe Gabriel",
+      "email": "felipe@gmail.com",
+      "country": "Albania",
+      "city": "city",
+      "code": "abc-123",
+      "carType": "semiLuxury"
+    }
+  ]
 }

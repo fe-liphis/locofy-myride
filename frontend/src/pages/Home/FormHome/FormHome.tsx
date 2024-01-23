@@ -22,6 +22,7 @@ import { z } from "zod";
 import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import { FormControlSelect } from "../../../components/UI/Select/styles";
+import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 
 type FormValues = {
   fullName: string;
@@ -40,8 +41,6 @@ function FormHome() {
   const [cities, setCities] = useState<Array<string>>([]);
   const [selectedCity, setSelectedCity] = useState<string>("");
 
-  console.log(selectedCountry);
-
   const schema = z.object({
     fullName: z
       .string()
@@ -52,7 +51,7 @@ function FormHome() {
     city: z.string().min(1, "Invalid city"),
     code: z.string().regex(/^[a-zA-Z]{3}-\d{3}$/, "Invalid code"),
     carType: z.string().refine((data) => !carTypeChecked || data !== "", {
-      message: "Select a vehicle type",
+      message: "Invalid car type",
     }),
   });
 
@@ -70,7 +69,7 @@ function FormHome() {
     register,
   } = form;
 
-  console.log(control);
+  console.log(errors);
 
   useEffect(() => {
     async function fetchCoutries() {
@@ -92,6 +91,22 @@ function FormHome() {
   function onSubmit(data: FormValues) {
     console.log("Submit: ");
     console.log(data);
+
+    fetch("http://localhost:3000/driver", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    async function fetchData() {
+      const res = await fetch("http://localhost:3000/driver");
+      const data = await res.json();
+      console.log(data);
+    }
+
+    fetchData();
   }
 
   function handleChangeCountries(event: SelectChangeEvent) {
@@ -130,9 +145,11 @@ function FormHome() {
           id="fullName"
           label="Full Name"
           error={errors.fullName ? true : false}
-          helperText={errors.fullName?.message}
           {...register("fullName")}
         />
+        {errors.fullName && (
+          <ErrorForm label={errors.fullName?.message || "Invalid name"} />
+        )}
         <TextFieldStyled
           id="email"
           label="Email"
@@ -165,9 +182,7 @@ function FormHome() {
               </Select>
             )}
           />
-          {errors.country && (
-            <FormHelperText error>Invalid country</FormHelperText>
-          )}
+          {errors.country && <ErrorForm label="Invalid country" />}
         </FormControlSelect>
         <FormControlSelect>
           <InputLabel>City</InputLabel>
@@ -217,7 +232,12 @@ function FormHome() {
           <fieldset>
             <CarTypeContainer>
               <GroupRadio>
-                <input type="radio" id={"sedan"} {...register("carType")} />
+                <input
+                  type="radio"
+                  id={"sedan"}
+                  value={"sedan"}
+                  {...register("carType")}
+                />
                 <label htmlFor={"sedan"}>
                   <svg
                     width="52"
@@ -238,7 +258,12 @@ function FormHome() {
                 </label>
               </GroupRadio>
               <GroupRadio>
-                <input type="radio" id={"suvVan"} {...register("carType")} />
+                <input
+                  type="radio"
+                  id={"suvVan"}
+                  value={"suvVan"}
+                  {...register("carType")}
+                />
                 <label htmlFor={"suvVan"}>
                   <svg
                     width="52"
@@ -262,6 +287,7 @@ function FormHome() {
                 <input
                   type="radio"
                   id={"semiLuxury"}
+                  value={"semiLuxury"}
                   {...register("carType")}
                 />
                 <label htmlFor={"semiLuxury"}>
@@ -284,7 +310,12 @@ function FormHome() {
                 </label>
               </GroupRadio>
               <GroupRadio>
-                <input type="radio" id={"luxuryCar"} {...register("carType")} />
+                <input
+                  type="radio"
+                  id={"luxuryCar"}
+                  value={"luxuryCar"}
+                  {...register("carType")}
+                />
                 <label htmlFor={"luxuryCar"}>
                   <svg
                     width="52"
