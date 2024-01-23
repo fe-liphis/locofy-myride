@@ -1,7 +1,8 @@
+import { SwitchProps } from "@mui/material";
 import { YellowSwitch } from "./styles";
 
-function Switch() {
-  return <YellowSwitch />;
+function Switch(props: SwitchProps) {
+  return <YellowSwitch {...props} />;
 }
 
 export default Switch;

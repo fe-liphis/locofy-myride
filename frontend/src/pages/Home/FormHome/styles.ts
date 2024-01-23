@@ -28,3 +28,19 @@ export const FormHomeParagraph = styled.h4`
   color: ${(props) => props.theme.fonts.palette.primary};
   font-size: ${(props) => props.theme.fonts.size.s};
 `;
+
+export const FieldsetLegend = styled.legend`
+  color: ${(props) => props.theme.fonts.palette.secondary};
+`;
+
+export const FieldsetContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CarTypeContainer = styled.fieldset`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
