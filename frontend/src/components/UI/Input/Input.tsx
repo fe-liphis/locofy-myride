@@ -1,23 +1,15 @@
-import { useTheme } from "styled-components";
 import { TextFieldStyled } from "./styles";
+import { TextFieldProps } from "@mui/material";
 
 type InputProps = {
   label: string;
   id: string;
-};
+  props?: React.FC;
+} & TextFieldProps;
 
-function Input({ label, id }: InputProps) {
-  const theme = useTheme();
-
+function Input({ label, id, ...props }: InputProps) {
   return (
-    <TextFieldStyled
-      sx={{
-        ":hover": {},
-      }}
-      id="outlined-basic"
-      label="Outlined"
-      variant="outlined"
-    />
+    <TextFieldStyled id={id} label={label} {...props} variant="outlined" />
   );
 }
 
