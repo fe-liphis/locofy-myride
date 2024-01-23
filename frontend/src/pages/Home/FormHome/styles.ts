@@ -8,4 +8,23 @@ export const FormHomeContainer = styled.form`
   margin: auto;
   display: flex;
   flex-direction: column;
+  gap: 24px;
+`;
+
+export const FormHeader = styled.header`
+  display: flex;
+  gap: 18px;
+  align-items: center;
+`;
+
+export const FormHomeTitle = styled.h4`
+  color: ${(props) => props.theme.fonts.palette.secondary};
+  font-size: ${(props) => props.theme.fonts.size.l};
+  font-weight: ${(props) => props.theme.fonts.weight.lg};
+  margin-bottom: 15px;
+`;
+
+export const FormHomeParagraph = styled.h4`
+  color: ${(props) => props.theme.fonts.palette.primary};
+  font-size: ${(props) => props.theme.fonts.size.s};
 `;
