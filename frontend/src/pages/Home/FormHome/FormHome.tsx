@@ -41,6 +41,10 @@ function FormHome() {
   const [cities, setCities] = useState<Array<string>>([]);
   const [selectedCity, setSelectedCity] = useState<string>("");
 
+  const [sendedData, setSendedData] = useState<FormValues>({});
+
+  console.log(sendedData);
+
   const schema = z.object({
     fullName: z
       .string()
@@ -71,8 +75,6 @@ function FormHome() {
     register,
   } = form;
 
-  console.log(errors);
-
   useEffect(() => {
     async function fetchCoutries() {
       async function fetchData() {
@@ -91,24 +93,34 @@ function FormHome() {
   }, []);
 
   function onSubmit(data: FormValues) {
-    console.log("Submit: ");
-    console.log(data);
+    try {
+      fetch("http://localhost:3000/driver/1", {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     fetch("http://localhost:3000/driver", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, id: "1" }),
     });
 
-    async function fetchData() {
-      const res = await fetch("http://localhost:3000/driver");
-      const data = await res.json();
-      console.log(data);
+    async function fetchDriverRegister() {
+      async function fetchData() {
+        const res = await fetch("http://localhost:3000/driver/1");
+        const data = await res.json();
+        return data;
+      }
+      const driverRegister = await fetchData();
+
+      setSendedData(driverRegister);
     }
 
-    fetchData();
+    fetchDriverRegister();
   }
 
   function handleChangeCountries(event: SelectChangeEvent) {
