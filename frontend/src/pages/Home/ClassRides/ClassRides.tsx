@@ -20,6 +20,7 @@ function ClassRides() {
           <Card
             img={basic}
             title="Basic"
+            imgAlt="Carro de cor caramelo em uma rua com uma casa de fundo"
             text="The best balance of price and comfort. You will not go wrong with our basic rides."
           />
         </li>
@@ -27,6 +28,7 @@ function ClassRides() {
           <Card
             img={comfort}
             title="Comfort"
+            imgAlt="Carro de cor preta em uma estrada de terra com arvores em volta"
             text="If comfort is your priority, this is the ride for you. It’s spacious and packed with features."
           />
         </li>
@@ -34,6 +36,7 @@ function ClassRides() {
           <Card
             img={business}
             title="Business"
+            imgAlt="Carro de cor preta em uma rua com dois imoveis de fundo"
             text="Do you want to travel around the city in style? Make sure to select or business class rides."
           />
         </li>
@@ -41,6 +44,7 @@ function ClassRides() {
           <Card
             img={deluxe}
             title="Deluxe"
+            imgAlt="Carro de cor branca em uma pista de alta velocidade"
             text="The best ride for luxury and comfort. No compromises here. You’ll surely get what you pay for."
           />
         </li>
