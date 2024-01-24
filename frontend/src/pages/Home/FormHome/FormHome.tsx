@@ -23,7 +23,7 @@ import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import { FormControlSelect } from "../../../components/UI/Select/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
-import FormSucess from "./FormSuccess";
+import FormSucess from "../FormSuccess/FormSuccess";
 import Sedan from "../../../components/UI/Svgs/TypeCar/Sedan";
 import SuvVan from "../../../components/UI/Svgs/TypeCar/SuvVan";
 import SemiLuxury from "../../../components/UI/Svgs/TypeCar/SemiLuxury";
