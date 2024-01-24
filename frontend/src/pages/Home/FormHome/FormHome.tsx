@@ -29,6 +29,8 @@ import SuvVan from "../../../components/UI/Svgs/TypeCar/SuvVan";
 import SemiLuxury from "../../../components/UI/Svgs/TypeCar/SemiLuxury";
 import LuxuryCar from "../../../components/UI/Svgs/TypeCar/LuxuryCar";
 
+import jsonCountriesAndCities from "../../../utils/countriesAndCities.json";
+
 export type FormValues = {
   fullName: string;
   email: string;
@@ -40,7 +42,8 @@ export type FormValues = {
 
 function FormHome() {
   const [carTypeChecked, setCarTypeChecked] = useState(true);
-  const [countriesAndCities, setCountriesAndCities] = useState();
+  const [countriesAndCities, setCountriesAndCities] =
+    useState<typeof jsonCountriesAndCities>();
   const [countries, setCountries] = useState<Array<string>>([]);
   const [selectedCountry, setSelectedCountrie] = useState<string>("");
   const [cities, setCities] = useState<Array<string>>([]);
@@ -81,20 +84,9 @@ function FormHome() {
   } = form;
 
   useEffect(() => {
-    async function fetchCoutries() {
-      async function fetchData() {
-        const res = await fetch(
-          "https://file.notion.so/f/f/c4f7bc66-0bd3-49f2-a56a-5b4cd35ab92a/f97598b4-0503-410d-9973-67467026136d/countries-and-cities.json?id=f85395c6-6876-4794-879b-0f949922a7f9&table=block&spaceId=c4f7bc66-0bd3-49f2-a56a-5b4cd35ab92a&expirationTimestamp=1706068800000&signature=nzvh-UQIHVHGfJ4rO8GYz0FLMQ3b3pykdIvGE3ZQcxg&downloadName=countries-and-cities.json"
-        );
-        const data = await res.json();
-        return data;
-      }
-      const data = await fetchData();
-      setCountriesAndCities(data);
-      const countries = Object.keys(data);
-      setCountries(countries);
-    }
-    fetchCoutries();
+    setCountriesAndCities(jsonCountriesAndCities);
+    const countriesKeys = Object.keys(jsonCountriesAndCities);
+    setCountries(countriesKeys);
   }, []);
 
   function onSubmit(data: FormValues) {
