@@ -4,7 +4,7 @@ import Sedan from "../components/UI/Svgs/TypeCar/Sedan";
 import SemiLuxury from "../components/UI/Svgs/TypeCar/SemiLuxury";
 import SuvVan from "../components/UI/Svgs/TypeCar/SuvVan";
 
-function getTypeCarIcon(name: string) {
+function getTypeCarIcon(name: string): React.ReactElement {
   if (name === "sedan") {
     return <Sedan />;
   }
@@ -21,7 +21,7 @@ function getTypeCarIcon(name: string) {
     return <LuxuryCar />;
   }
 
-  return <p>Icon Not Found</p>;
+  return <Error />;
 }
 
 export default getTypeCarIcon;
