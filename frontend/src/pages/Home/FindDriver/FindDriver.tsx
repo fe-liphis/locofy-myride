@@ -1,14 +1,16 @@
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import findDriver from "../../../assets/image_my_ride_home.png";
-import Button from "../../../components/UI/Button/Button";
 import {
-    ButtonFindDriver,
+  ButtonFindDriver,
   FindDriverContainer,
   FindDriverFormContainer,
   FindDriverFormTitle,
   FindDriverSubTitle,
   FindDriverTitle,
   FindDriverTitleStrong,
+  TextFieldSearch,
 } from "./styles";
+import { TextFieldStyled } from "../../../components/UI/Input/styles";
 
 function FindDriver() {
   return (
@@ -17,12 +19,75 @@ function FindDriver() {
       <div>
         <FindDriverSubTitle>Need a ride?</FindDriverSubTitle>
         <FindDriverTitle>
-          Book with <FindDriverTitleStrong>myRIDE</FindDriverTitleStrong> now!
+          Book with{" "}
+          <FindDriverTitleStrong>
+            my<span>RIDE</span>
+          </FindDriverTitleStrong>{" "}
+          now!
         </FindDriverTitle>
         <FindDriverFormContainer>
           <FindDriverFormTitle>Find a ride now</FindDriverFormTitle>
-          <input type="text" />
-          <input type="text" />
+          <TextFieldSearch
+            id="pickup"
+            label="Your Pickup"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      // Lógica a ser executada quando o ícone "X" é clicado
+                    }}
+                  >
+                    <svg
+                      width="20"
+                      height="21"
+                      viewBox="0 0 20 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.8334 5.70874L14.6584 4.53374L10.0001 9.19207L5.34175 4.53374L4.16675 5.70874L8.82508 10.3671L4.16675 15.0254L5.34175 16.2004L10.0001 11.5421L14.6584 16.2004L15.8334 15.0254L11.1751 10.3671L15.8334 5.70874Z"
+                        fill="white"
+                        fill-opacity="0.56"
+                      />
+                    </svg>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          
+          <TextFieldSearch
+            id="destination"
+            label="Your Destination"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      // Lógica a ser executada quando o ícone "X" é clicado
+                    }}
+                  >
+                    <svg
+                      width="20"
+                      height="21"
+                      viewBox="0 0 20 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.8334 5.70874L14.6584 4.53374L10.0001 9.19207L5.34175 4.53374L4.16675 5.70874L8.82508 10.3671L4.16675 15.0254L5.34175 16.2004L10.0001 11.5421L14.6584 16.2004L15.8334 15.0254L11.1751 10.3671L15.8334 5.70874Z"
+                        fill="white"
+                        fill-opacity="0.56"
+                      />
+                    </svg>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
           <ButtonFindDriver
             startIcon={
               <svg
