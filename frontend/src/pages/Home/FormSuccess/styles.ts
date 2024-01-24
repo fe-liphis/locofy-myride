@@ -5,7 +5,7 @@ export const FormSuccessContainer = styled.section`
   background-color: ${(props) => props.theme.background.palette.secondary};
   padding: 30px;
   border-radius: 10px;
-  width: 70%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -35,16 +35,34 @@ export const FormSuccessCarTypeFallback = styled.p`
 `;
 
 export const InfosContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 50%;
+  gap: 30px;
+`;
+
+export const InfoTitle = styled.h5`
+  color: ${(props) => props.theme.fonts.palette.secondary};
+  font-size: ${(props) => props.theme.fonts.size.ml};
+  margin-bottom: 5px;
+`;
+
+export const InfoDescription = styled.p`
+  color: ${(props) => props.theme.fonts.palette.primary};
+  font-size: ${(props) => props.theme.fonts.size.xl};
+`;
+
+export const InfoControl = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  gap: 14px;
+  gap: 5px;
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 `;
 
 export const FigureContainer = styled.figure`

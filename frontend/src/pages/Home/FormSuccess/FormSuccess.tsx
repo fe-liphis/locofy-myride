@@ -1,17 +1,17 @@
 import { FormValues } from "../FormHome/FormHome";
-import { TextFieldStyled } from "../../../components/UI/Input/styles";
-import { GroupRadio } from "../../../components/UI/InputRadio/styles";
-import getTypeCarIcon from "../../../utils/getTypeCarIcon";
 import Check from "../../../components/UI/Svgs/Check";
 import getFirstName from "../../../utils/getFirstName";
+
 import {
   ContentContainer,
   FigureContainer,
   FormSuccessButton,
-  FormSuccessCarTypeFallback,
   FormSuccessContainer,
   FormSuccessTitle,
   FormSuccessTitleWrapper,
+  InfoControl,
+  InfoDescription,
+  InfoTitle,
   InfosContainer,
 } from "./styles";
 
@@ -28,54 +28,33 @@ function FormSucess(data: FormValues) {
       </FormSuccessTitleWrapper>
       <ContentContainer>
         <InfosContainer>
-          <TextFieldStyled
-            label="Full Name"
-            defaultValue={data.fullName}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextFieldStyled
-            label="Email"
-            defaultValue={data.email}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextFieldStyled
-            label="Country"
-            defaultValue={data.country}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextFieldStyled
-            label="City"
-            defaultValue={data.city}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextFieldStyled
-            label="Referal Code"
-            defaultValue={data.code}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          {data.carType ? (
-            <GroupRadio>
-              <input readOnly={true} />
-              <label>
-                {getTypeCarIcon(data.carType)}
-                <span>{data.carType}</span>
-              </label>
-            </GroupRadio>
-          ) : (
-            <FormSuccessCarTypeFallback>
-              Car type not selected
-            </FormSuccessCarTypeFallback>
-          )}
+          <InfoControl>
+            <InfoTitle>Full Name</InfoTitle>
+            <InfoDescription>{data.fullName}</InfoDescription>
+          </InfoControl>
+
+          <InfoControl>
+            <InfoTitle>Email</InfoTitle>
+            <InfoDescription>{data.email}</InfoDescription>
+          </InfoControl>
+
+          <InfoControl>
+            <InfoTitle>Country</InfoTitle>
+            <InfoDescription>{data.country}</InfoDescription>
+          </InfoControl>
+
+          <InfoControl>
+            <InfoTitle>City</InfoTitle>
+            <InfoDescription>{data.city}</InfoDescription>
+          </InfoControl>
+          <InfoControl>
+            <InfoTitle>Referal Code</InfoTitle>
+            <InfoDescription>{data.code}</InfoDescription>
+          </InfoControl>
+          <InfoControl>
+            <InfoTitle>Car type</InfoTitle>
+            <InfoDescription>{data.carType}</InfoDescription>
+          </InfoControl>
         </InfosContainer>
         <FigureContainer>
           <img src={success_img} alt="" />
