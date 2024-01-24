@@ -1,46 +1,51 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-
 import basic from "../../../assets/carsClass/basic.png";
 import comfort from "../../../assets/carsClass/comfort.png";
 import business from "../../../assets/carsClass/business.png";
-import deluxe from "../../../assets/carsClass/basic.png";
+import deluxe from "../../../assets/carsClass/deluxe.png";
+import Card from "../../../components/UI/Card/Card";
+import {
+  CardsContainer,
+  ClassRidesContainer,
+  ClassRidesSubTitle,
+  ClassRidesTitle,
+} from "./styles";
 
 function ClassRides() {
   return (
-    <section>
-      <h3>Why should you ride with us?</h3>
-      <h2>Best in class rides</h2>
-      <ul>
+    <ClassRidesContainer>
+      <ClassRidesSubTitle>Why should you ride with us?</ClassRidesSubTitle>
+      <ClassRidesTitle>Best in class rides</ClassRidesTitle>
+      <CardsContainer>
         <li>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              sx={{ height: 140 }}
-              image={basic}
-              title="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
+          <Card
+            img={basic}
+            title="Basic"
+            text="The best balance of price and comfort. You will not go wrong with our basic rides."
+          />
         </li>
-      </ul>
-    </section>
+        <li>
+          <Card
+            img={comfort}
+            title="Comfort"
+            text="If comfort is your priority, this is the ride for you. It’s spacious and packed with features."
+          />
+        </li>
+        <li>
+          <Card
+            img={business}
+            title="Business"
+            text="Do you want to travel around the city in style? Make sure to select or business class rides."
+          />
+        </li>
+        <li>
+          <Card
+            img={deluxe}
+            title="Deluxe"
+            text="The best ride for luxury and comfort. No compromises here. You’ll surely get what you pay for."
+          />
+        </li>
+      </CardsContainer>
+    </ClassRidesContainer>
   );
 }
 

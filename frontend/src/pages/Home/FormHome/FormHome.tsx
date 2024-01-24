@@ -50,9 +50,11 @@ function FormHome() {
     country: z.string().min(1, "Invalid country"),
     city: z.string().min(1, "Invalid city"),
     code: z.string().regex(/^[a-zA-Z]{3}-\d{3}$/, "Invalid code"),
-    carType: z.string().refine((data) => !carTypeChecked || data !== "", {
-      message: "Invalid car type",
-    }),
+    carType: z
+      .string()
+      .refine((data: string) => !carTypeChecked || data !== "", {
+        message: "Invalid car type",
+      }),
   });
 
   const form = useForm<FormValues>({

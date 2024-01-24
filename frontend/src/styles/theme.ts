@@ -29,6 +29,8 @@ const theme = {
       primary: "#242424",
       secondary: "#2C2C2C",
       tertiary: "#383838",
+      quaternary: "#B3B3B3",
+      quinary: "#9D9D9D",
     },
   },
 };
