@@ -25,7 +25,7 @@ import { FormControlSelect } from "../../../components/UI/Select/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "./FormSucess";
 
-type FormValues = {
+export type FormValues = {
   fullName: string;
   email: string;
   country: string;
@@ -147,7 +147,7 @@ function FormHome() {
     <>
       <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
         {sendedData.fullName ? (
-          <FormSucess />
+          <FormSucess {...sendedData} />
         ) : (
           <>
             <FormHeader>
