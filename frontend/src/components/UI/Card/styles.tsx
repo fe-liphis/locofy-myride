@@ -2,8 +2,17 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  width: min-content;
+  width: 20vw;
   background-color: ${(props) => props.theme.background.palette.tertiary};
+  height: 100%;
+  
+  img {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const CardTitle = styled.h5`

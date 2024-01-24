@@ -22,9 +22,14 @@ export const ClassRidesSubTitle = styled.h3`
 `;
 
 export const CardsContainer = styled.ul`
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 5%;
   justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5%;
   margin-bottom: 100px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
