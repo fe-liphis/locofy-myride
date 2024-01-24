@@ -1,18 +1,24 @@
 import { FormValues } from "../FormHome/FormHome";
 import { TextFieldStyled } from "../../../components/UI/Input/styles";
-import Button from "../../../components/UI/Button/Button";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import getTypeCarIcon from "../../../utils/getTypeCarIcon";
 import Check from "../../../components/UI/Svgs/Check";
 import getFirstName from "../../../utils/getFirstName";
+import {
+  FormSuccessButton,
+  FormSuccessTitle,
+  FormSuccessTitleWrapper,
+} from "./styles";
 
 function FormSucess(data: FormValues) {
   const firstName = getFirstName(data.fullName);
 
   return (
     <>
-      <Check />
-      <h3>Welcome, {firstName}!</h3>
+      <FormSuccessTitleWrapper>
+        <Check />
+        <FormSuccessTitle>Welcome, {firstName}!</FormSuccessTitle>
+      </FormSuccessTitleWrapper>
       <TextFieldStyled
         label="Full Name"
         defaultValue={data.fullName}
@@ -48,7 +54,6 @@ function FormSucess(data: FormValues) {
           readOnly: true,
         }}
       />
-
       <GroupRadio>
         <input readOnly={true} />
         <label>
@@ -56,7 +61,7 @@ function FormSucess(data: FormValues) {
           <span>{data.carType}</span>
         </label>
       </GroupRadio>
-      <Button>Submit a new car</Button>
+      <FormSuccessButton>Submit a new car</FormSuccessButton>
     </>
   );
 }
