@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../../../components/UI/Button/Button";
 
 export const FindDriverContainer = styled.section`
   display: flex;
@@ -40,4 +41,8 @@ export const FindDriverFormTitle = styled.h3`
   color: ${(props) => props.theme.fonts.palette.primary};
   font-size: ${(props) => props.theme.fonts.size.ml};
   font-weight: ${(props) => props.theme.fonts.weight.lg};
+`;
+
+export const ButtonFindDriver = styled(Button)`
+  width: 100%;
 `;
