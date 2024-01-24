@@ -53,7 +53,7 @@ function FormHome() {
     email: z.string().min(1, "Invalid email").email("Invalid email"),
     country: z.string().min(1, "Invalid country"),
     city: z.string().min(1, "Invalid city"),
-    code: z.string().regex(/^[a-zA-Z]{3}-\d{3}$/, "Invalid code"),
+    code: z.string().regex(/^[A-Z]{3}-\d{3}$/, "Invalid code"),
     carType: z
       .string()
       .refine((data: string) => !carTypeChecked || data !== "", {
