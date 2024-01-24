@@ -134,7 +134,7 @@ function FormHome() {
   }
 
   function handleChangeCity(event: SelectChangeEvent) {
-    const city = event.target.value as string;
+    const city = event.target.value;
     setSelectedCity(city);
   }
 
@@ -213,7 +213,7 @@ function FormHome() {
                   error={errors.city ? true : false}
                   onChange={(e) => {
                     handleChangeCity(e);
-                    field.onChange("city");
+                    field.onChange(e);
                   }}
                 >
                   {cities.map((city, index) => (
