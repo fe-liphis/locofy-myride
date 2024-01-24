@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
@@ -14,10 +15,15 @@ export const NavListContainer = styled.nav`
   gap: 30px;
 `;
 
-export const NavItem = styled.a`
+export const NavItem = styled(NavLink)`
   text-decoration: none;
   color: ${(props) => props.theme.fonts.palette.primary};
   font-weight: ${(props) => props.theme.fonts.weight.xs};
+  height: 100%;
+
+  &.active {
+    color: ${(props) => props.theme.fonts.palette.secondary};
+  }
 `;
 
 export const MenuButtonsContainer = styled.menu`
