@@ -10,7 +10,6 @@ import {
   FindDriverTitleStrong,
   TextFieldSearch,
 } from "./styles";
-import { TextFieldStyled } from "../../../components/UI/Input/styles";
 
 function FindDriver() {
   return (
@@ -57,7 +56,7 @@ function FindDriver() {
               ),
             }}
           />
-          
+
           <TextFieldSearch
             id="destination"
             label="Your Destination"
