@@ -17,3 +17,7 @@ export const FormSuccessTitleWrapper = styled.div`
 export const FormSuccessButton = styled(Button)`
   align-self: center;
 `;
+
+export const FormSuccessCarTypeFallback = styled.p`
+  color: ${(props) => props.theme.fonts.palette.primary};
+`;

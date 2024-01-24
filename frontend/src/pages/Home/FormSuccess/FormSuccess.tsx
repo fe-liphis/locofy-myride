@@ -6,6 +6,7 @@ import Check from "../../../components/UI/Svgs/Check";
 import getFirstName from "../../../utils/getFirstName";
 import {
   FormSuccessButton,
+  FormSuccessCarTypeFallback,
   FormSuccessTitle,
   FormSuccessTitleWrapper,
 } from "./styles";
@@ -54,13 +55,19 @@ function FormSucess(data: FormValues) {
           readOnly: true,
         }}
       />
-      <GroupRadio>
-        <input readOnly={true} />
-        <label>
-          {getTypeCarIcon(data.carType)}
-          <span>{data.carType}</span>
-        </label>
-      </GroupRadio>
+      {data.carType ? (
+        <GroupRadio>
+          <input readOnly={true} />
+          <label>
+            {getTypeCarIcon(data.carType)}
+            <span>{data.carType}</span>
+          </label>
+        </GroupRadio>
+      ) : (
+        <FormSuccessCarTypeFallback>
+          Car type not selected
+        </FormSuccessCarTypeFallback>
+      )}
       <FormSuccessButton>Submit a new car</FormSuccessButton>
     </>
   );

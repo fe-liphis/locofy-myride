@@ -21,13 +21,19 @@ function Card({
   text,
   buttonText = "LEARN MORE",
 }: CardProps) {
+  function handleOnClick() {
+    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(
+      title
+    )}+Car`;
+  }
+
   return (
     <CardContainer>
       <img src={img} alt={imgAlt} />
       <CardContentWrapper>
         <CardTitle>{title}</CardTitle>
         <CardParagraph>{text}</CardParagraph>
-        <CardButton>{buttonText}</CardButton>
+        <CardButton onClick={handleOnClick}>{buttonText}</CardButton>
       </CardContentWrapper>
     </CardContainer>
   );
