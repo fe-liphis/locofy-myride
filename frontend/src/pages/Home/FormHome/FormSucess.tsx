@@ -3,10 +3,12 @@ import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import Button from "../../../components/UI/Button/Button";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import getTypeCarIcon from "../../../utils/getTypeCarIcon";
+import Check from "../../../components/UI/Svgs/Check";
 
 function FormSucess(data: FormValues) {
   return (
     <>
+      <Check />
       <TextFieldStyled
         label="Full Name"
         defaultValue={data.fullName}
