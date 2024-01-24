@@ -17,7 +17,12 @@ import {
 
 import success_img from "../../../assets/success_image.png";
 
-function FormSucess(data: FormValues) {
+type FormSuccessProps = {
+  data: FormValues;
+  handleOnClick: () => void;
+};
+
+function FormSucess({ data, handleOnClick }: FormSuccessProps) {
   const firstName = getFirstName(data.fullName);
 
   return (
@@ -47,20 +52,26 @@ function FormSucess(data: FormValues) {
             <InfoTitle>City</InfoTitle>
             <InfoDescription>{data.city}</InfoDescription>
           </InfoControl>
+
           <InfoControl>
             <InfoTitle>Referal Code</InfoTitle>
             <InfoDescription>{data.code}</InfoDescription>
           </InfoControl>
+
           <InfoControl>
             <InfoTitle>Car type</InfoTitle>
             <InfoDescription>{data.carType}</InfoDescription>
           </InfoControl>
         </InfosContainer>
+
         <FigureContainer>
           <img src={success_img} alt="" />
         </FigureContainer>
       </ContentContainer>
-      <FormSuccessButton>Submit a new car</FormSuccessButton>
+
+      <FormSuccessButton onClick={() => handleOnClick()}>
+        Submit a new car
+      </FormSuccessButton>
     </FormSuccessContainer>
   );
 }

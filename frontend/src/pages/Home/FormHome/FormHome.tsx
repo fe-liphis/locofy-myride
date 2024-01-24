@@ -77,6 +77,7 @@ function FormHome() {
   });
 
   const {
+    reset,
     control,
     formState: { errors },
     handleSubmit,
@@ -105,6 +106,10 @@ function FormHome() {
       },
       body: JSON.stringify({ ...data, id: "1" }),
     });
+
+    reset();
+    setSelectedCountrie("");
+    setCities([]);
 
     async function fetchDriverRegister() {
       async function fetchData() {
@@ -139,10 +144,14 @@ function FormHome() {
     setCarTypeChecked(event.target.checked);
   }
 
+  function handleOnSubmitNewCar() {
+    setSendedData({});
+  }
+
   return (
     <>
       {sendedData.fullName ? (
-        <FormSucess {...sendedData} />
+        <FormSucess data={sendedData} handleOnClick={handleOnSubmitNewCar} />
       ) : (
         <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
           <FormHeader>
