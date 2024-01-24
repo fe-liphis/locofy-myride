@@ -21,7 +21,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
-import { FormControlSelect } from "../../../components/UI/Select/styles";
+import {
+  FormControlSelect,
+  FormSelect,
+} from "../../../components/UI/Select/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "../FormSuccess/FormSuccess";
 import Sedan from "../../../components/UI/Svgs/TypeCar/Sedan";
@@ -49,9 +52,7 @@ function FormHome() {
   const [cities, setCities] = useState<Array<string>>([]);
   const [selectedCity, setSelectedCity] = useState<string>("");
 
-  const [sendedData, setSendedData] = useState<FormValues>({});
-
-  console.log(sendedData);
+  const [registerDriver, setRegisterDriver] = useState(true);
 
   const schema = z.object({
     fullName: z
@@ -91,14 +92,6 @@ function FormHome() {
   }, []);
 
   function onSubmit(data: FormValues) {
-    try {
-      fetch("http://localhost:3000/driver/1", {
-        method: "DELETE",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
     fetch("http://localhost:3000/driver", {
       method: "POST",
       headers: {
@@ -111,18 +104,7 @@ function FormHome() {
     setSelectedCountrie("");
     setCities([]);
 
-    async function fetchDriverRegister() {
-      async function fetchData() {
-        const res = await fetch("http://localhost:3000/driver/1");
-        const data = await res.json();
-        return data;
-      }
-      const driverRegister = await fetchData();
-
-      setSendedData(driverRegister);
-    }
-
-    fetchDriverRegister();
+    setRegisterDriver(false);
   }
 
   function handleChangeCountries(event: SelectChangeEvent) {
@@ -145,14 +127,13 @@ function FormHome() {
   }
 
   function handleOnSubmitNewCar() {
-    setSendedData({});
+    setSelectedCity("");
+    setRegisterDriver(true);
   }
 
   return (
     <>
-      {sendedData.fullName ? (
-        <FormSucess data={sendedData} handleOnClick={handleOnSubmitNewCar} />
-      ) : (
+      {registerDriver ? (
         <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
           <FormHeader>
             <img src={form_image} alt="" />
@@ -207,7 +188,7 @@ function FormHome() {
             />
             {errors.country && <ErrorForm label="Invalid country" />}
           </FormControlSelect>
-          <FormControlSelect>
+          <FormControlSelect error={errors.city ? true : false}>
             <InputLabel>City</InputLabel>
             <Controller
               name="city"
@@ -219,6 +200,7 @@ function FormHome() {
                     id="city"
                     label="City"
                     value={selectedCity}
+                    disabled={selectedCountry === "" ? true : false}
                     error={errors.city ? true : false}
                     onChange={(e) => {
                       handleChangeCity(e);
@@ -310,6 +292,8 @@ function FormHome() {
           )}
           <Button type="submit">Submit</Button>
         </FormHomeContainer>
+      ) : (
+        <FormSucess handleOnClick={handleOnSubmitNewCar} />
       )}
     </>
   );

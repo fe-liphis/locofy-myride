@@ -1,4 +1,4 @@
-import { FormControl } from "@mui/material";
+import { FormControl, Select } from "@mui/material";
 import styled from "styled-components";
 
 export const FormControlSelect = styled(FormControl)`
@@ -39,5 +39,15 @@ export const FormControlSelect = styled(FormControl)`
   .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root:hover
     .MuiOutlinedInput-notchedOutline {
     border-color: ${(props) => props.theme.fonts.palette.secondary};
+  }
+
+  .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon.Mui-disabled {
+    color: ${(props) => props.theme.fonts.palette.primary};
+  }
+
+  .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-disabled
+    .MuiOutlinedInput-notchedOutline {
+    border-color: ${(props) =>
+      props.error ? "#d32f2f" : props.theme.fonts.palette.primary};
   }
 `;
