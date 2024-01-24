@@ -125,7 +125,7 @@ function FormHome() {
     setSelectedCountrie(country);
 
     if (countriesAndCities) {
-      const cities = countriesAndCities[country];
+      const cities: any = countriesAndCities[country];
       setCities(cities);
     }
   }
