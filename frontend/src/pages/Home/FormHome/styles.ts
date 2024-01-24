@@ -9,6 +9,7 @@ export const FormHomeContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 100px;
 `;
 
 export const FormHeader = styled.header`
