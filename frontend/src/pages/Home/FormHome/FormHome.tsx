@@ -31,6 +31,7 @@ import SemiLuxury from "../../../components/UI/Svgs/TypeCar/SemiLuxury";
 import LuxuryCar from "../../../components/UI/Svgs/TypeCar/LuxuryCar";
 
 import jsonCountriesAndCities from "../../../utils/countriesAndCities.json";
+import ModalTemplate from "../../../components/Modal/Modal";
 
 export type FormValues = {
   fullName: string;
@@ -51,6 +52,8 @@ function FormHome() {
   const [selectedCity, setSelectedCity] = useState<string>("");
 
   const [registerDriver, setRegisterDriver] = useState(true);
+
+  const [error, setError] = useState(false);
 
   const schema = z.object({
     fullName: z
@@ -90,19 +93,31 @@ function FormHome() {
   }, []);
 
   function onSubmit(data: FormValues) {
-    fetch("http://localhost:3000/driver", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...data, id: "1" }),
-    });
+    async function postDriverData() {
+      async function postData() {
+        const res = await fetch("http://localhost:3000/driver", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...data, id: "1" }),
+        });
+        return res;
+      }
 
-    reset();
-    setSelectedCountrie("");
-    setCities([]);
+      const res = await postData();
+      if (res.ok) {
+        reset();
+        setError(false);
+        setSelectedCountrie("");
+        setCities([]);
+        setRegisterDriver(false);
+      } else {
+        setError(true);
+      }
+    }
 
-    setRegisterDriver(false);
+    postDriverData();
   }
 
   function handleChangeCountries(event: SelectChangeEvent) {
@@ -130,180 +145,187 @@ function FormHome() {
   return (
     <>
       {registerDriver ? (
-        <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
-          <FormHeader>
-            <img src={form_image} alt="" />
-            <div>
-              <FormHomeTitle>Drive with MyRide</FormHomeTitle>
-              <FormHomeParagraph>
-                Register as a driver using the form below. Our team will assess
-                and get back to you within 48 hours.
-              </FormHomeParagraph>
-            </div>
-          </FormHeader>
-          <FormControlInput>
-            <TextFieldStyled
-              id="fullName"
-              label="Full Name"
-              error={errors.fullName ? true : false}
-              {...register("fullName")}
-            />
-            {errors.fullName && (
-              <ErrorForm label={errors.fullName?.message || "Invalid name"} />
-            )}
-          </FormControlInput>
-          <FormControlInput>
-            <TextFieldStyled
-              id="email"
-              label="Email"
-              error={errors.email ? true : false}
-              {...register("email")}
-            />
-            {errors.fullName && (
-              <ErrorForm label={errors.email?.message || "Invalid email"} />
-            )}
-          </FormControlInput>
-          <FormControlInput>
-            <FormControlSelect error={errors.country ? true : false}>
-              <InputLabel>Country</InputLabel>
-              <Controller
-                name="country"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    labelId="country-label"
-                    id={"country"}
-                    label="Country"
-                    value={selectedCountry}
-                    error={errors.country ? true : false}
-                    onChange={(e) => {
-                      handleChangeCountries(e);
-                      field.onChange(e);
-                    }}
-                  >
-                    {countries.map((country, index) => (
-                      <MenuItem value={country} key={index}>
-                        {country}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                )}
+        <>
+          {error && (
+            <ModalTemplate initialOpen={error} fn={() => setError(false)}>
+              <p>Teste</p>
+            </ModalTemplate>
+          )}
+          <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
+            <FormHeader>
+              <img src={form_image} alt="" />
+              <div>
+                <FormHomeTitle>Drive with MyRide</FormHomeTitle>
+                <FormHomeParagraph>
+                  Register as a driver using the form below. Our team will
+                  assess and get back to you within 48 hours.
+                </FormHomeParagraph>
+              </div>
+            </FormHeader>
+            <FormControlInput>
+              <TextFieldStyled
+                id="fullName"
+                label="Full Name"
+                error={errors.fullName ? true : false}
+                {...register("fullName")}
               />
-            </FormControlSelect>
-            {errors.country && <ErrorForm label={"Invalid country"} />}
-          </FormControlInput>
-          <FormControlInput>
-            <FormControlSelect error={errors.city ? true : false}>
-              <InputLabel>City</InputLabel>
-              <Controller
-                name="city"
-                control={control}
-                render={({ field }) => (
-                  <>
+              {errors.fullName && (
+                <ErrorForm label={errors.fullName?.message || "Invalid name"} />
+              )}
+            </FormControlInput>
+            <FormControlInput>
+              <TextFieldStyled
+                id="email"
+                label="Email"
+                error={errors.email ? true : false}
+                {...register("email")}
+              />
+              {errors.fullName && (
+                <ErrorForm label={errors.email?.message || "Invalid email"} />
+              )}
+            </FormControlInput>
+            <FormControlInput>
+              <FormControlSelect error={errors.country ? true : false}>
+                <InputLabel>Country</InputLabel>
+                <Controller
+                  name="country"
+                  control={control}
+                  render={({ field }) => (
                     <Select
-                      labelId="city-label"
-                      id="city"
-                      label="City"
-                      value={selectedCity}
-                      disabled={selectedCountry === "" ? true : false}
-                      error={errors.city ? true : false}
+                      labelId="country-label"
+                      id={"country"}
+                      label="Country"
+                      value={selectedCountry}
+                      error={errors.country ? true : false}
                       onChange={(e) => {
-                        handleChangeCity(e);
+                        handleChangeCountries(e);
                         field.onChange(e);
                       }}
                     >
-                      {cities.map((city, index) => (
-                        <MenuItem value={city} key={index}>
-                          {city}
+                      {countries.map((country, index) => (
+                        <MenuItem value={country} key={index}>
+                          {country}
                         </MenuItem>
                       ))}
                     </Select>
-                  </>
-                )}
-              />
-            </FormControlSelect>
-            {errors.city && <ErrorForm label={"Invalid city"} />}
-          </FormControlInput>
-          <FormControlInput>
-            <TextFieldStyled
-              id="code"
-              label="Referal Code"
-              error={errors.code ? true : false}
-              {...register("code")}
-            />
-            {errors.code && (
-              <ErrorForm label={errors.code?.message || "Invalid code"} />
-            )}
-          </FormControlInput>
-          <FieldsetContainer aria-label="fieldset">
-            <FieldsetLegend>Select your car type</FieldsetLegend>
-            <Switch
-              checked={carTypeChecked}
-              onChange={onChangeSwitchHandler}
-              inputProps={{ "aria-label": "controlled" }}
-            />
-          </FieldsetContainer>
-          {carTypeChecked && (
-            <FormControlInput>
-              <CarTypeContainer>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"sedan"}
-                    value={"sedan"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"sedan"}>
-                    <Sedan />
-                    <span>Sedan</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"suvVan"}
-                    value={"suvVan"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"suvVan"}>
-                    <SuvVan />
-                    <span>SUV/Van</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"semiLuxury"}
-                    value={"semiLuxury"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"semiLuxury"}>
-                    <SemiLuxury />
-                    <span>Semi Luxury</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"luxuryCar"}
-                    value={"luxuryCar"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"luxuryCar"}>
-                    <LuxuryCar />
-                    <span>Luxury Car</span>
-                  </label>
-                </GroupRadio>
-              </CarTypeContainer>
-              {errors.carType && (
-                <ErrorForm
-                  label={errors.carType?.message || "Invalid car type"}
+                  )}
                 />
+              </FormControlSelect>
+              {errors.country && <ErrorForm label={"Invalid country"} />}
+            </FormControlInput>
+            <FormControlInput>
+              <FormControlSelect error={errors.city ? true : false}>
+                <InputLabel>City</InputLabel>
+                <Controller
+                  name="city"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <Select
+                        labelId="city-label"
+                        id="city"
+                        label="City"
+                        value={selectedCity}
+                        disabled={selectedCountry === "" ? true : false}
+                        error={errors.city ? true : false}
+                        onChange={(e) => {
+                          handleChangeCity(e);
+                          field.onChange(e);
+                        }}
+                      >
+                        {cities.map((city, index) => (
+                          <MenuItem value={city} key={index}>
+                            {city}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </>
+                  )}
+                />
+              </FormControlSelect>
+              {errors.city && <ErrorForm label={"Invalid city"} />}
+            </FormControlInput>
+            <FormControlInput>
+              <TextFieldStyled
+                id="code"
+                label="Referal Code"
+                error={errors.code ? true : false}
+                {...register("code")}
+              />
+              {errors.code && (
+                <ErrorForm label={errors.code?.message || "Invalid code"} />
               )}
             </FormControlInput>
-          )}
-          <Button type="submit">Submit</Button>
-        </FormHomeContainer>
+            <FieldsetContainer aria-label="fieldset">
+              <FieldsetLegend>Select your car type</FieldsetLegend>
+              <Switch
+                checked={carTypeChecked}
+                onChange={onChangeSwitchHandler}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </FieldsetContainer>
+            {carTypeChecked && (
+              <FormControlInput>
+                <CarTypeContainer>
+                  <GroupRadio>
+                    <input
+                      type="radio"
+                      id={"sedan"}
+                      value={"sedan"}
+                      {...register("carType")}
+                    />
+                    <label htmlFor={"sedan"}>
+                      <Sedan />
+                      <span>Sedan</span>
+                    </label>
+                  </GroupRadio>
+                  <GroupRadio>
+                    <input
+                      type="radio"
+                      id={"suvVan"}
+                      value={"suvVan"}
+                      {...register("carType")}
+                    />
+                    <label htmlFor={"suvVan"}>
+                      <SuvVan />
+                      <span>SUV/Van</span>
+                    </label>
+                  </GroupRadio>
+                  <GroupRadio>
+                    <input
+                      type="radio"
+                      id={"semiLuxury"}
+                      value={"semiLuxury"}
+                      {...register("carType")}
+                    />
+                    <label htmlFor={"semiLuxury"}>
+                      <SemiLuxury />
+                      <span>Semi Luxury</span>
+                    </label>
+                  </GroupRadio>
+                  <GroupRadio>
+                    <input
+                      type="radio"
+                      id={"luxuryCar"}
+                      value={"luxuryCar"}
+                      {...register("carType")}
+                    />
+                    <label htmlFor={"luxuryCar"}>
+                      <LuxuryCar />
+                      <span>Luxury Car</span>
+                    </label>
+                  </GroupRadio>
+                </CarTypeContainer>
+                {errors.carType && (
+                  <ErrorForm
+                    label={errors.carType?.message || "Invalid car type"}
+                  />
+                )}
+              </FormControlInput>
+            )}
+            <Button type="submit">Submit</Button>
+          </FormHomeContainer>
+        </>
       ) : (
         <FormSucess handleOnClick={handleOnSubmitNewCar} />
       )}

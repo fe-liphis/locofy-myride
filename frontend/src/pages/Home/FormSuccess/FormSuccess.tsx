@@ -5,7 +5,6 @@ import getFirstName from "../../../utils/getFirstName";
 import {
   ContentContainer,
   FetchingContainer,
-  FetchingImg,
   FetchingTitle,
   FigureContainer,
   FormSuccessButton,
@@ -22,9 +21,7 @@ import {
 import success_img from "../../../assets/success_image.png";
 import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal/Modal";
-
-import loading_img from "../../../assets/loading_image.jpg";
-import { CircularProgress } from "@mui/material";
+import getCarType from "../../../utils/getCarType";
 
 type FormSuccessProps = {
   handleOnClick: () => void;
@@ -34,6 +31,11 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
   const [data, setData] = useState<FormValues>();
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState(false);
+
+  function handleCloseModal() {
+    handleOnClick();
+    setError(false);
+  }
 
   console.log(data);
 
@@ -83,7 +85,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
       )}
 
       {!fetching && error && (
-        <Modal fn={handleOnClick} initialOpen={error}>
+        <Modal fn={handleCloseModal} initialOpen={error}>
           <p>Ta errado mano</p>
         </Modal>
       )}
@@ -92,7 +94,9 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
         <>
           <FormSuccessTitleWrapper>
             <Check />
-            <FormSuccessTitle>Welcome, Felipe</FormSuccessTitle>
+            <FormSuccessTitle>
+              Welcome, {getFirstName(data?.fullName)}
+            </FormSuccessTitle>
           </FormSuccessTitleWrapper>
           <ContentContainer>
             <InfosContainer>
@@ -123,9 +127,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
 
               <InfoControl>
                 <InfoTitle>Car type</InfoTitle>
-                <InfoDescription>
-                  {data?.carType ? data?.carType : "Car type not selected"}
-                </InfoDescription>
+                <InfoDescription>{getCarType(data?.carType)}</InfoDescription>
               </InfoControl>
             </InfosContainer>
 
