@@ -10,7 +10,7 @@ export const FormSuccessContainer = styled.section`
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
   margin-bottom: 100px;
 `;
 
@@ -36,16 +36,20 @@ export const FormSuccessCarTypeFallback = styled.p`
 `;
 
 export const InfosContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 50%;
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 55px;
+  column-gap: 100px;
 `;
 
 export const InfoTitle = styled.h5`
   color: ${(props) => props.theme.fonts.palette.secondary};
   font-size: ${(props) => props.theme.fonts.size.ml};
-  margin-bottom: 5px;
+  font-weight: ${(props) => props.theme.fonts.weight.lg};
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid ${(props) => props.theme.fonts.palette.secondary};
 `;
 
 export const InfoDescription = styled.p`
@@ -56,14 +60,15 @@ export const InfoDescription = styled.p`
 export const InfoControl = styled.div`
   display: flex;
   flex-direction: column;
+  width: 25%;
   gap: 5px;
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  gap: 25px;
 `;
 
 export const FigureContainer = styled.figure`
