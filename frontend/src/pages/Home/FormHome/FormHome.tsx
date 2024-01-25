@@ -2,6 +2,7 @@ import {
   CarTypeContainer,
   FieldsetContainer,
   FieldsetLegend,
+  FormControlInput,
   FormHeader,
   FormHomeContainer,
   FormHomeParagraph,
@@ -143,86 +144,104 @@ function FormHome() {
               </FormHomeParagraph>
             </div>
           </FormHeader>
-          <TextFieldStyled
-            id="fullName"
-            label="Full Name"
-            error={errors.fullName ? true : false}
-            {...register("fullName")}
-          />
-          {errors.fullName && (
-            <ErrorForm label={errors.fullName?.message || "Invalid name"} />
-          )}
-          <TextFieldStyled
-            id="email"
-            label="Email"
-            error={errors.email ? true : false}
-            helperText={errors.email?.message}
-            {...register("email")}
-          />
-          <FormControlSelect>
-            <InputLabel>Country</InputLabel>
-            <Controller
-              name="country"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  labelId="country-label"
-                  id={"country"}
-                  label="Country"
-                  value={selectedCountry}
-                  error={errors.country ? true : false}
-                  onChange={(e) => {
-                    handleChangeCountries(e);
-                    field.onChange(e);
-                  }}
-                >
-                  {countries.map((country, index) => (
-                    <MenuItem value={country} key={index}>
-                      {country}
-                    </MenuItem>
-                  ))}
-                </Select>
-              )}
+          <FormControlInput>
+            <TextFieldStyled
+              id="fullName"
+              label="Full Name"
+              error={errors.fullName ? true : false}
+              {...register("fullName")}
             />
-            {errors.country && <ErrorForm label="Invalid country" />}
-          </FormControlSelect>
-          <FormControlSelect error={errors.city ? true : false}>
-            <InputLabel>City</InputLabel>
-            <Controller
-              name="city"
-              control={control}
-              render={({ field }) => (
-                <>
+            {errors.fullName && (
+              <ErrorForm label={errors.fullName?.message || "Invalid name"} />
+            )}
+          </FormControlInput>
+          <FormControlInput>
+            <TextFieldStyled
+              id="email"
+              label="Email"
+              error={errors.email ? true : false}
+              {...register("email")}
+            />
+            {errors.fullName && (
+              <ErrorForm label={errors.email?.message || "Invalid email"} />
+            )}
+          </FormControlInput>
+
+          <FormControlInput>
+            <FormControlSelect error={errors.country ? true : false}>
+              <InputLabel>Country</InputLabel>
+              <Controller
+                name="country"
+                control={control}
+                render={({ field }) => (
                   <Select
-                    labelId="city-label"
-                    id="city"
-                    label="City"
-                    value={selectedCity}
-                    disabled={selectedCountry === "" ? true : false}
-                    error={errors.city ? true : false}
+                    labelId="country-label"
+                    id={"country"}
+                    label="Country"
+                    value={selectedCountry}
+                    error={errors.country ? true : false}
                     onChange={(e) => {
-                      handleChangeCity(e);
+                      handleChangeCountries(e);
                       field.onChange(e);
                     }}
                   >
-                    {cities.map((city, index) => (
-                      <MenuItem value={city} key={index}>
-                        {city}
+                    {countries.map((country, index) => (
+                      <MenuItem value={country} key={index}>
+                        {country}
                       </MenuItem>
                     ))}
                   </Select>
-                </>
-              )}
+                )}
+              />
+            </FormControlSelect>
+            {errors.country && <ErrorForm label={"Invalid country"} />}
+          </FormControlInput>
+
+          <FormControlInput>
+            <FormControlSelect error={errors.city ? true : false}>
+              <InputLabel>City</InputLabel>
+              <Controller
+                name="city"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <Select
+                      labelId="city-label"
+                      id="city"
+                      label="City"
+                      value={selectedCity}
+                      disabled={selectedCountry === "" ? true : false}
+                      error={errors.city ? true : false}
+                      onChange={(e) => {
+                        handleChangeCity(e);
+                        field.onChange(e);
+                      }}
+                    >
+                      {cities.map((city, index) => (
+                        <MenuItem value={city} key={index}>
+                          {city}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </>
+                )}
+              />
+            </FormControlSelect>
+            {errors.city && <ErrorForm label={"Invalid city"} />}
+          </FormControlInput>
+
+          <FormControlInput>
+            <TextFieldStyled
+              id="code"
+              label="Referal Code"
+              error={errors.code ? true : false}
+              {...register("code")}
             />
-            {errors.city && <FormHelperText error>Invalid city</FormHelperText>}
-          </FormControlSelect>
-          <TextFieldStyled
-            id="code"
-            label="Referal Code"
-            error={errors.code ? true : false}
-            helperText={errors.code?.message}
-            {...register("code")}
-          />
+            {errors.code && (
+              <ErrorForm label={errors.code?.message || "Invalid code"} />
+            )}
+          </FormControlInput>
+
           <FieldsetContainer aria-label="fieldset">
             <FieldsetLegend>Select your car type</FieldsetLegend>
             <Switch
@@ -232,7 +251,7 @@ function FormHome() {
             />
           </FieldsetContainer>
           {carTypeChecked && (
-            <fieldset>
+            <FormControlInput>
               <CarTypeContainer>
                 <GroupRadio>
                   <input
@@ -284,9 +303,11 @@ function FormHome() {
                 </GroupRadio>
               </CarTypeContainer>
               {errors.carType && (
-                <FormHelperText error>{errors.carType?.message}</FormHelperText>
+                <ErrorForm
+                  label={errors.carType?.message || "Invalid car type"}
+                />
               )}
-            </fieldset>
+            </FormControlInput>
           )}
           <Button type="submit">Submit</Button>
         </FormHomeContainer>

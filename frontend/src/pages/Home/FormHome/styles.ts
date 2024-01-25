@@ -45,3 +45,10 @@ export const CarTypeContainer = styled.fieldset`
   align-items: center;
   gap: 12px;
 `;
+
+export const FormControlInput = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;

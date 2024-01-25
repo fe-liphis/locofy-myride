@@ -19,7 +19,8 @@ export const FormControlSelect = styled(FormControl)`
   }
 
   .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
-    color: ${(props) => props.theme.fonts.palette.primary};
+    color: ${(props) =>
+      props.error ? "#d32f2f" : props.theme.fonts.palette.primary};
   }
 
   .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
@@ -49,5 +50,10 @@ export const FormControlSelect = styled(FormControl)`
     .MuiOutlinedInput-notchedOutline {
     border-color: ${(props) =>
       props.error ? "#d32f2f" : props.theme.fonts.palette.primary};
+
+    &.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+      color: ${(props) =>
+        props.error ? "#d32f2f" : props.theme.fonts.palette.primary};
+    }
   }
 `;
