@@ -34,6 +34,7 @@ function FindDriver() {
                 <InputAdornment position="end">
                   <IconButton
                     size="small"
+                    aria-label="Clear Pickup Input"
                     onClick={() => {
                       // Lógica a ser executada quando o ícone "X" é clicado
                     }}
@@ -65,6 +66,7 @@ function FindDriver() {
                 <InputAdornment position="end">
                   <IconButton
                     size="small"
+                    aria-label="Clear Destination Input"
                     onClick={() => {
                       // Lógica a ser executada quando o ícone "X" é clicado
                     }}

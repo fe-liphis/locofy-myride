@@ -229,14 +229,14 @@ function FormHome() {
             </FormControlInput>
             <FormControlInput>
               <FormControlSelect error={errors.city ? true : false}>
-                <InputLabel>City</InputLabel>
+                <InputLabel id="city-label">City</InputLabel>
                 <Controller
                   name="city"
                   control={control}
                   render={({ field }) => (
                     <>
                       <Select
-                        aria-labelledby="country"
+                        aria-labelledby="city-label"
                         labelId="city-label"
                         id="city"
                         label="City"

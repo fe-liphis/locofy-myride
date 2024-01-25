@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   padding: 20px;
 `;
 
-export const NavListContainer = styled.nav`
+export const NavListContainer = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;

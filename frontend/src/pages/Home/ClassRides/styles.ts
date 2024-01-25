@@ -5,7 +5,7 @@ export const ClassRidesContainer = styled.section`
   margin: auto;
 `;
 
-export const ClassRidesTitle = styled.h2`
+export const ClassRidesTitle = styled.h4`
   color: ${(props) => props.theme.fonts.palette.primary};
   font-size: ${(props) => props.theme.fonts.size.xxl};
   font-weight: ${(props) => props.theme.fonts.weight.lg};
