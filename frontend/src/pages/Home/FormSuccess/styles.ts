@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "../../../components/UI/Button/Button";
+import { CircularProgress } from "@mui/material";
 
 export const FormSuccessContainer = styled.section`
   background-color: ${(props) => props.theme.background.palette.secondary};
@@ -71,5 +72,29 @@ export const FigureContainer = styled.figure`
   img {
     width: 100%;
     border-radius: 8px;
+  }
+`;
+
+export const FetchingTitle = styled.p`
+  color: ${(props) => props.theme.fonts.palette.secondary};
+  font-size: ${(props) => props.theme.fonts.size.ml};
+  text-align: center;
+`;
+
+export const FetchingImg = styled.img`
+  width: 50%;
+  margin: auto;
+`;
+
+export const FetchingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const Progress = styled(CircularProgress)`
+  svg {
+    color: ${(props) => props.theme.fonts.palette.secondary};
   }
 `;

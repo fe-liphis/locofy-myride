@@ -13,7 +13,7 @@ import form_image from "../../../assets/form_image.png";
 import Switch from "../../../components/UI/Switch/Switch";
 import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
-import { FormHelperText, InputLabel, MenuItem } from "@mui/material";
+import { InputLabel, MenuItem } from "@mui/material";
 
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
@@ -22,10 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { TextFieldStyled } from "../../../components/UI/Input/styles";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
-import {
-  FormControlSelect,
-  FormSelect,
-} from "../../../components/UI/Select/styles";
+import { FormControlSelect } from "../../../components/UI/Select/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "../FormSuccess/FormSuccess";
 import Sedan from "../../../components/UI/Svgs/TypeCar/Sedan";
@@ -166,7 +163,6 @@ function FormHome() {
               <ErrorForm label={errors.email?.message || "Invalid email"} />
             )}
           </FormControlInput>
-
           <FormControlInput>
             <FormControlSelect error={errors.country ? true : false}>
               <InputLabel>Country</InputLabel>
@@ -196,7 +192,6 @@ function FormHome() {
             </FormControlSelect>
             {errors.country && <ErrorForm label={"Invalid country"} />}
           </FormControlInput>
-
           <FormControlInput>
             <FormControlSelect error={errors.city ? true : false}>
               <InputLabel>City</InputLabel>
@@ -229,7 +224,6 @@ function FormHome() {
             </FormControlSelect>
             {errors.city && <ErrorForm label={"Invalid city"} />}
           </FormControlInput>
-
           <FormControlInput>
             <TextFieldStyled
               id="code"
@@ -241,7 +235,6 @@ function FormHome() {
               <ErrorForm label={errors.code?.message || "Invalid code"} />
             )}
           </FormControlInput>
-
           <FieldsetContainer aria-label="fieldset">
             <FieldsetLegend>Select your car type</FieldsetLegend>
             <Switch
