@@ -8,6 +8,7 @@ import {
   FormHomeContainer,
   FormHomeParagraph,
   FormHomeTitle,
+  ModalTitle,
 } from "./styles";
 
 import form_image from "../../../assets/form_image.png";
@@ -33,6 +34,8 @@ import LuxuryCar from "../../../components/UI/Svgs/TypeCar/LuxuryCar";
 
 import jsonCountriesAndCities from "../../../utils/countriesAndCities.json";
 import ModalTemplate from "../../../components/Modal/Modal";
+
+import error_img from "../../../assets/send_error.png";
 
 export type FormValues = {
   fullName: string;
@@ -153,7 +156,11 @@ function FormHome() {
         <>
           {error && (
             <ModalTemplate initialOpen={error} fn={() => setError(false)}>
-              <p>Teste</p>
+              <ModalTitle>An error occurred to send the data</ModalTitle>
+              <img
+                src={error_img}
+                alt="A cartoon image of a yellow car in repair for an error screen"
+              />
             </ModalTemplate>
           )}
           <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>

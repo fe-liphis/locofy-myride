@@ -23,6 +23,10 @@ import { useEffect, useState } from "react";
 import Modal from "../../../components/Modal/Modal";
 import getCarType from "../../../utils/getCarType";
 
+import { ModalTitle } from "../FormHome/styles";
+
+import error_img from "../../../assets/fetch_error.png";
+
 type FormSuccessProps = {
   handleOnClick: () => void;
 };
@@ -43,7 +47,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
     async function fetchDriverRegister() {
       async function fetchData() {
         setFetching(true);
-        const res = await fetch("http://localhost:3000/driver/1");
+        const res = await fetch("http://localhost:3000/driver/134");
         const data = await res.json();
         return data;
       }
@@ -86,7 +90,8 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
 
       {!fetching && error && (
         <Modal fn={handleCloseModal} initialOpen={error}>
-          <p>Ta errado mano</p>
+          <ModalTitle>An error occurred to fetch the data</ModalTitle>
+          <img src={error_img} alt="" />
         </Modal>
       )}
 

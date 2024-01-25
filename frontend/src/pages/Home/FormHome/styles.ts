@@ -33,6 +33,7 @@ export const FormHomeParagraph = styled.h4`
 export const CarTypeLabel = styled.label`
   color: ${(props) => props.theme.fonts.palette.secondary};
   font-size: ${(props) => props.theme.fonts.size.m};
+  margin-bottom: 11px;
 `;
 
 export const FieldsetLegend = styled.legend`
@@ -56,5 +57,11 @@ export const FormControlInput = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 5px;
+`;
+
+export const ModalTitle = styled.h6`
+  color: ${(props) => props.theme.fonts.palette.secondary};
+  font-size: 30px;
+  font-weight: ${(props) => props.theme.fonts.weight.lg};
 `;
