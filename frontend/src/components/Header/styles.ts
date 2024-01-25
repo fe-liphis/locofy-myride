@@ -28,5 +28,12 @@ export const NavItem = styled(NavLink)`
 
 export const MenuButtonsContainer = styled.menu`
   display: flex;
-  gap: 40px;
+  gap: 20px;
+  align-items: center;
+`;
+
+export const SeparatorMenu = styled.div`
+  width: 1px;
+  height: 30px;
+  background-color: ${(props) => props.theme.background.palette.tertiary};
 `;

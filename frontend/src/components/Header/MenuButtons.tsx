@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 
 import bell_icon from "../../assets/bell-icon.svg";
 import user_avatar from "../../assets/user-avatar.svg";
-import { MenuButtonsContainer } from "./styles";
+import { MenuButtonsContainer, SeparatorMenu } from "./styles";
 
 function MenuButtons() {
   return (
@@ -10,6 +10,7 @@ function MenuButtons() {
       <IconButton>
         <img src={bell_icon} alt="Sino com uma notificação" />
       </IconButton>
+      <SeparatorMenu />
       <IconButton>
         <img
           src={user_avatar}
