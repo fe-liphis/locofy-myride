@@ -30,8 +30,14 @@ export const FormHomeParagraph = styled.h4`
   font-size: ${(props) => props.theme.fonts.size.s};
 `;
 
-export const FieldsetLegend = styled.legend`
+export const CarTypeLabel = styled.label`
   color: ${(props) => props.theme.fonts.palette.secondary};
+  font-size: ${(props) => props.theme.fonts.size.m};
+`;
+
+export const FieldsetLegend = styled.legend`
+  color: ${(props) => props.theme.fonts.palette.primary};
+  font-size: ${(props) => props.theme.fonts.size.s};
 `;
 
 export const FieldsetContainer = styled.div`
@@ -50,5 +56,5 @@ export const FormControlInput = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 24px;
 `;

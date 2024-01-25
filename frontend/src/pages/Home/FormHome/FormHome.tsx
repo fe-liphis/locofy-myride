@@ -1,5 +1,6 @@
 import {
   CarTypeContainer,
+  CarTypeLabel,
   FieldsetContainer,
   FieldsetLegend,
   FormControlInput,
@@ -93,6 +94,10 @@ function FormHome() {
   }, []);
 
   function onSubmit(data: FormValues) {
+    if (!carTypeChecked) {
+      data.carType = "Car type not selected";
+    }
+
     async function postDriverData() {
       async function postData() {
         const res = await fetch("http://localhost:3000/driver", {
@@ -257,7 +262,7 @@ function FormHome() {
               )}
             </FormControlInput>
             <FieldsetContainer aria-label="fieldset">
-              <FieldsetLegend>Select your car type</FieldsetLegend>
+              <FieldsetLegend>I drive my own car</FieldsetLegend>
               <Switch
                 checked={carTypeChecked}
                 onChange={onChangeSwitchHandler}
@@ -265,63 +270,66 @@ function FormHome() {
               />
             </FieldsetContainer>
             {carTypeChecked && (
-              <FormControlInput>
-                <CarTypeContainer>
-                  <GroupRadio>
-                    <input
-                      type="radio"
-                      id={"sedan"}
-                      value={"sedan"}
-                      {...register("carType")}
+              <>
+                <FormControlInput>
+                  <CarTypeLabel>Select your car type</CarTypeLabel>
+                  <CarTypeContainer>
+                    <GroupRadio>
+                      <input
+                        type="radio"
+                        id={"sedan"}
+                        value={"sedan"}
+                        {...register("carType")}
+                      />
+                      <label htmlFor={"sedan"}>
+                        <Sedan />
+                        <span>Sedan</span>
+                      </label>
+                    </GroupRadio>
+                    <GroupRadio>
+                      <input
+                        type="radio"
+                        id={"suvVan"}
+                        value={"suvVan"}
+                        {...register("carType")}
+                      />
+                      <label htmlFor={"suvVan"}>
+                        <SuvVan />
+                        <span>SUV/Van</span>
+                      </label>
+                    </GroupRadio>
+                    <GroupRadio>
+                      <input
+                        type="radio"
+                        id={"semiLuxury"}
+                        value={"semiLuxury"}
+                        {...register("carType")}
+                      />
+                      <label htmlFor={"semiLuxury"}>
+                        <SemiLuxury />
+                        <span>Semi Luxury</span>
+                      </label>
+                    </GroupRadio>
+                    <GroupRadio>
+                      <input
+                        type="radio"
+                        id={"luxuryCar"}
+                        value={"luxuryCar"}
+                        {...register("carType")}
+                      />
+                      <label htmlFor={"luxuryCar"}>
+                        <LuxuryCar />
+                        <span>Luxury Car</span>
+                      </label>
+                    </GroupRadio>
+                  </CarTypeContainer>
+                  {errors.carType && (
+                    <ErrorForm
+                      label={errors.carType?.message || "Invalid car type"}
                     />
-                    <label htmlFor={"sedan"}>
-                      <Sedan />
-                      <span>Sedan</span>
-                    </label>
-                  </GroupRadio>
-                  <GroupRadio>
-                    <input
-                      type="radio"
-                      id={"suvVan"}
-                      value={"suvVan"}
-                      {...register("carType")}
-                    />
-                    <label htmlFor={"suvVan"}>
-                      <SuvVan />
-                      <span>SUV/Van</span>
-                    </label>
-                  </GroupRadio>
-                  <GroupRadio>
-                    <input
-                      type="radio"
-                      id={"semiLuxury"}
-                      value={"semiLuxury"}
-                      {...register("carType")}
-                    />
-                    <label htmlFor={"semiLuxury"}>
-                      <SemiLuxury />
-                      <span>Semi Luxury</span>
-                    </label>
-                  </GroupRadio>
-                  <GroupRadio>
-                    <input
-                      type="radio"
-                      id={"luxuryCar"}
-                      value={"luxuryCar"}
-                      {...register("carType")}
-                    />
-                    <label htmlFor={"luxuryCar"}>
-                      <LuxuryCar />
-                      <span>Luxury Car</span>
-                    </label>
-                  </GroupRadio>
-                </CarTypeContainer>
-                {errors.carType && (
-                  <ErrorForm
-                    label={errors.carType?.message || "Invalid car type"}
-                  />
-                )}
-              </FormControlInput>
+                  )}
+                </FormControlInput>
+              </>
             )}
             <Button type="submit">Submit</Button>
           </FormHomeContainer>

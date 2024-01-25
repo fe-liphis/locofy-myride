@@ -4,7 +4,7 @@ function getCarType(carType: string | undefined) {
   if (carType === "semiLuxury") return "Semi Luxury";
   if (carType === "luxuryCar") return "Luxury Car";
 
-  return "Car type not selected";
+  return carType;
 }
 
 export default getCarType;
