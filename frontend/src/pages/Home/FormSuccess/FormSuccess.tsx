@@ -26,18 +26,23 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
   const [data, setData] = useState<FormValues>();
   const [fetching, setFetching] = useState(true);
 
+  console.log(data);
+
   useEffect(() => {
     async function fetchDriverRegister() {
       async function fetchData() {
         setFetching(true);
-        const res = await fetch("http://localhost:3000/driver/1");
+        const res = await fetch("http://localhost:3000/driver/185");
         const data = await res.json();
         return data;
       }
 
-      const driverRegister = await fetchData();
-
-      setData(driverRegister);
+      try {
+        const driverRegister = await fetchData();
+        setData(driverRegister);
+      } catch (error) {
+        handleOnClick();
+      }
 
       setFetching(false);
 
@@ -55,11 +60,15 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
 
   return (
     <FormSuccessContainer>
-      {!fetching && (
+      {fetching ? (
+        <p>Is Fetching</p>
+      ) : (
         <>
           <FormSuccessTitleWrapper>
             <Check />
-            <FormSuccessTitle>Welcome, {"Felipe"}!</FormSuccessTitle>
+            <FormSuccessTitle>
+              Welcome, {getFirstName(data.fullName)}!
+            </FormSuccessTitle>
           </FormSuccessTitleWrapper>
           <ContentContainer>
             <InfosContainer>
@@ -90,7 +99,9 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
 
               <InfoControl>
                 <InfoTitle>Car type</InfoTitle>
-                <InfoDescription>{data.carType}</InfoDescription>
+                <InfoDescription>
+                  {data.carType ? data.carType : "Car type not selected"}
+                </InfoDescription>
               </InfoControl>
             </InfosContainer>
 

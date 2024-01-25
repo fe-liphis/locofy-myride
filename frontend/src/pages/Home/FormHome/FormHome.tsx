@@ -48,8 +48,8 @@ function FormHome() {
   const [countriesAndCities, setCountriesAndCities] =
     useState<typeof jsonCountriesAndCities>();
   const [countries, setCountries] = useState<Array<string>>([]);
-  const [selectedCountry, setSelectedCountrie] = useState<string>("");
   const [cities, setCities] = useState<Array<string>>([]);
+  const [selectedCountry, setSelectedCountrie] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
 
   const [registerDriver, setRegisterDriver] = useState(true);
@@ -111,10 +111,8 @@ function FormHome() {
     const country = event.target.value as string;
     setSelectedCountrie(country);
 
-    if (countriesAndCities) {
-      const cities: any = countriesAndCities[country];
-      setCities(cities);
-    }
+    const cities = countriesAndCities[country];
+    setCities(cities);
   }
 
   function handleChangeCity(event: SelectChangeEvent) {
@@ -175,12 +173,12 @@ function FormHome() {
                   error={errors.country ? true : false}
                   onChange={(e) => {
                     handleChangeCountries(e);
-                    field.onChange(e); // Usa field.onChange ao invés de register
+                    field.onChange(e);
                   }}
                 >
-                  {countries.map((countrie, index) => (
-                    <MenuItem value={countrie} key={index}>
-                      {countrie}
+                  {countries.map((country, index) => (
+                    <MenuItem value={country} key={index}>
+                      {country}
                     </MenuItem>
                   ))}
                 </Select>
