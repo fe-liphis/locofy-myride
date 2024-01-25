@@ -287,9 +287,10 @@ function FormHome() {
                         type="radio"
                         id={"sedan"}
                         value={"sedan"}
+                        aria-labelledby={"sedan-label"}
                         {...register("carType")}
                       />
-                      <label htmlFor={"sedan"}>
+                      <label htmlFor={"sedan"} id={"sedan-label"}>
                         <Sedan />
                         <span>Sedan</span>
                       </label>
@@ -298,10 +299,11 @@ function FormHome() {
                       <input
                         type="radio"
                         id={"suvVan"}
+                        aria-labelledby={"suvVan-label"}
                         value={"suvVan"}
                         {...register("carType")}
                       />
-                      <label htmlFor={"suvVan"}>
+                      <label htmlFor={"suvVan"} id={"suvVan-label"}>
                         <SuvVan />
                         <span>SUV/Van</span>
                       </label>
@@ -311,9 +313,10 @@ function FormHome() {
                         type="radio"
                         id={"semiLuxury"}
                         value={"semiLuxury"}
+                        aria-labelledby={"semiLuxury-label"}
                         {...register("carType")}
                       />
-                      <label htmlFor={"semiLuxury"}>
+                      <label htmlFor={"semiLuxury"} id={"semiLuxury-label"}>
                         <SemiLuxury />
                         <span>Semi Luxury</span>
                       </label>
@@ -323,9 +326,10 @@ function FormHome() {
                         type="radio"
                         id={"luxuryCar"}
                         value={"luxuryCar"}
+                        aria-labelledby={"luxuryCar-label"}
                         {...register("carType")}
                       />
-                      <label htmlFor={"luxuryCar"}>
+                      <label htmlFor={"luxuryCar"} id={"luxuryCar-label"}>
                         <LuxuryCar />
                         <span>Luxury Car</span>
                       </label>

@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const GroupRadio = styled.p`
   & input {
-    display: none;
+    position: absolute;
+    left: -9999px;
   }
 
   & label {
@@ -36,7 +37,12 @@ export const GroupRadio = styled.p`
     fill: ${(props) => props.theme.fonts.palette.quinary};
   }
 
-  & input:checked + label span{
+  & input:checked + label span {
     color: ${(props) => props.theme.fonts.palette.quinary};
+  }
+
+  & input:focus + label {
+    outline: 4px solid ${(props) => props.theme.fonts.palette.quaternary};
+    outline-offset: 2px;
   }
 `;
