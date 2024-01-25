@@ -63,7 +63,7 @@ function FormHome() {
     fullName: z
       .string()
       .min(10, "Invalid name")
-      .regex(/^[^\d]+ [^\d]+$/i, "Invalid name"),
+      .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name"),
     email: z.string().min(1, "Invalid email").email("Invalid email"),
     country: z.string().min(1, "Invalid country"),
     city: z.string().min(1, "Invalid city"),
@@ -114,6 +114,7 @@ function FormHome() {
       }
 
       const res = await postData();
+
       if (res.ok) {
         reset();
         setError(false);
@@ -198,13 +199,14 @@ function FormHome() {
             </FormControlInput>
             <FormControlInput>
               <FormControlSelect error={errors.country ? true : false}>
-                <InputLabel>Country</InputLabel>
+                <InputLabel id="country-label">Country</InputLabel>
                 <Controller
                   name="country"
                   control={control}
                   render={({ field }) => (
                     <Select
                       labelId="country-label"
+                      aria-labelledby="country-label"
                       id={"country"}
                       label="Country"
                       value={selectedCountry}
