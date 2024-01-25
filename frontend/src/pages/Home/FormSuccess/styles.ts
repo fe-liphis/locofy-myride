@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 
 export const FormSuccessContainer = styled.section`
   background-color: ${(props) => props.theme.background.palette.secondary};
-  padding: 50px;
+  padding: 25px;
   border-radius: 10px;
   width: 90%;
   margin: auto;
