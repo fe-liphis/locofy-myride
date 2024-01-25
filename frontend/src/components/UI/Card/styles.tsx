@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   width: 20vw;
   background-color: ${(props) => props.theme.background.palette.tertiary};
   height: 100%;
-  
+
   img {
     width: 100%;
   }
@@ -15,7 +15,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const CardTitle = styled.h5`
+export const CardTitle = styled.h4`
   color: ${(props) => props.theme.fonts.palette.primary};
 `;
 

@@ -11,7 +11,7 @@ export const FindDriverContainer = styled.section`
   margin-bottom: calc(74px + 59px);
 `;
 
-export const FindDriverTitle = styled.h1`
+export const FindDriverTitle = styled.h2`
   color: ${(props) => props.theme.fonts.palette.primary};
   font-size: ${(props) => props.theme.fonts.size.xxxl};
   margin-bottom: 30px;

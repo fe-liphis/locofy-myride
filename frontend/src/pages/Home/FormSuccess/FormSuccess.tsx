@@ -47,7 +47,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
     async function fetchDriverRegister() {
       async function fetchData() {
         setFetching(true);
-        const res = await fetch("http://localhost:3000/driver/134");
+        const res = await fetch("http://localhost:3000/driver/1");
         const data = await res.json();
         return data;
       }
@@ -91,7 +91,10 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
       {!fetching && error && (
         <Modal fn={handleCloseModal} initialOpen={error}>
           <ModalTitle>An error occurred to fetch the data</ModalTitle>
-          <img src={error_img} alt="" />
+          <img
+            src={error_img}
+            alt="A cartoon image of a yellow car in repair for an error screen"
+          />
         </Modal>
       )}
 

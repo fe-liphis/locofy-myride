@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <HeaderContainer>
-      <Link to={"/"}>
+      <Link to={"/"} aria-label="Redirect to home">
         <Logo />
       </Link>
       <NavBar />
