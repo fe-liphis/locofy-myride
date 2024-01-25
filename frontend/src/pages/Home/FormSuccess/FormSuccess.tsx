@@ -17,6 +17,7 @@ import {
 
 import success_img from "../../../assets/success_image.png";
 import { useEffect, useState } from "react";
+import Modal from "../../../components/Modal/Modal";
 
 type FormSuccessProps = {
   handleOnClick: () => void;
@@ -25,6 +26,7 @@ type FormSuccessProps = {
 function FormSucess({ handleOnClick }: FormSuccessProps) {
   const [data, setData] = useState<FormValues>();
   const [fetching, setFetching] = useState(true);
+  const [error, setError] = useState(false);
 
   console.log(data);
 
@@ -41,7 +43,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
         const driverRegister = await fetchData();
         setData(driverRegister);
       } catch (error) {
-        handleOnClick();
+        setError(true);
       }
 
       setFetching(false);
@@ -60,53 +62,59 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
 
   return (
     <FormSuccessContainer>
-      {fetching ? (
-        <p>Is Fetching</p>
-      ) : (
+      {fetching && <p>Is Fetching</p>}
+
+      {!fetching && error && (
+        <Modal fn={handleOnClick} initialOpen={error}>
+          <p>Ta errado mano</p>
+        </Modal>
+      )}
+
+      {!fetching && !error && (
         <>
           <FormSuccessTitleWrapper>
             <Check />
             <FormSuccessTitle>
-              Welcome, {getFirstName(data.fullName)}!
+              Welcome, {getFirstName(data?.fullName)}
             </FormSuccessTitle>
           </FormSuccessTitleWrapper>
           <ContentContainer>
             <InfosContainer>
               <InfoControl>
                 <InfoTitle>Full Name</InfoTitle>
-                <InfoDescription>{data.fullName}</InfoDescription>
+                <InfoDescription>{data?.fullName}</InfoDescription>
               </InfoControl>
 
               <InfoControl>
                 <InfoTitle>Email</InfoTitle>
-                <InfoDescription>{data.email}</InfoDescription>
+                <InfoDescription>{data?.email}</InfoDescription>
               </InfoControl>
 
               <InfoControl>
                 <InfoTitle>Country</InfoTitle>
-                <InfoDescription>{data.country}</InfoDescription>
+                <InfoDescription>{data?.country}</InfoDescription>
               </InfoControl>
 
               <InfoControl>
                 <InfoTitle>City</InfoTitle>
-                <InfoDescription>{data.city}</InfoDescription>
+                <InfoDescription>{data?.city}</InfoDescription>
               </InfoControl>
 
               <InfoControl>
                 <InfoTitle>Referal Code</InfoTitle>
-                <InfoDescription>{data.code}</InfoDescription>
+                <InfoDescription>{data?.code}</InfoDescription>
               </InfoControl>
 
               <InfoControl>
                 <InfoTitle>Car type</InfoTitle>
                 <InfoDescription>
-                  {data.carType ? data.carType : "Car type not selected"}
+                  {data?.carType ? data?.carType : "Car type not selected"}
                 </InfoDescription>
               </InfoControl>
             </InfosContainer>
 
             <FigureContainer>
-              <img src={success_img} alt="" />
+              <img src={success_img} alt="Imagem de sucesso do formulário" />
             </FigureContainer>
           </ContentContainer>
           <FormSuccessButton onClick={() => handleOnClick()}>
