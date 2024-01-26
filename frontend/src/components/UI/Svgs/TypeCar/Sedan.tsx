@@ -6,6 +6,7 @@ function Sedan() {
       viewBox="0 0 52 29"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="Sedan Car Icon"
     >
       <g id="Card Image">
         <path
