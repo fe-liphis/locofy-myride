@@ -16,10 +16,10 @@ test("display RootLayout", () => {
   const home = screen.getByText(/home/i);
   const gettingTaxi = screen.getByText(/Getting a Taxi/i);
   const mobileApp = screen.getAllByText(/Mobile App/i);
-  const homeLink = screen.getByText(/home/i);
+  const contactUs = screen.getAllByText(/Contact Us/i);
 
   expect(home).not.toBeNull();
   expect(gettingTaxi).not.toBeNull();
   expect(mobileApp).not.toBeNull();
-  expect(homeLink).not.toBeNull();
+  expect(contactUs).not.toBeNull();
 });
