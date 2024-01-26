@@ -14,6 +14,7 @@ describe("display footer", () => {
     const address = screen.getByText(
       /MyRide Inc., 2nd Floor, New York, NY 10016/i
     );
+
     const facebookLogo = screen.getByAltText(/facebook logo/i);
     const instagramLogo = screen.getByAltText(/instagram logo/i);
     const twitterLogo = screen.getByAltText(/twitter logo/i);
