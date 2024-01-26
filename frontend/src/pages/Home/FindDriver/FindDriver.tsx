@@ -10,8 +10,12 @@ import {
   FindDriverTitleStrong,
   TextFieldSearch,
 } from "./styles";
+import { useState } from "react";
 
 function FindDriver() {
+  const [pickup, setPickup] = useState("");
+  const [destination, setDestination] = useState("");
+
   return (
     <FindDriverContainer>
       <img src={findDriver} alt="" />
@@ -29,15 +33,15 @@ function FindDriver() {
           <TextFieldSearch
             id="pickup"
             label="Your Pickup"
+            value={pickup}
+            onChange={(e) => setPickup(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
                     size="small"
                     aria-label="Clear Pickup Input"
-                    onClick={() => {
-                      // Lógica a ser executada quando o ícone "X" é clicado
-                    }}
+                    onClick={() => setPickup("")}
                   >
                     <svg
                       width="20"
@@ -61,15 +65,15 @@ function FindDriver() {
           <TextFieldSearch
             id="destination"
             label="Your Destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
                     size="small"
                     aria-label="Clear Destination Input"
-                    onClick={() => {
-                      // Lógica a ser executada quando o ícone "X" é clicado
-                    }}
+                    onClick={() => setDestination("")}
                   >
                     <svg
                       width="20"
