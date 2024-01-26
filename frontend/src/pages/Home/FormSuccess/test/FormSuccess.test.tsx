@@ -9,13 +9,13 @@ describe("display FormSuccess component", () => {
     render(
       <MyThemeProvider>
         <BrowserRouter>
-          <FormSucess />
+          <FormSucess handleOnClick={() => {}} />
         </BrowserRouter>
       </MyThemeProvider>
     );
+
+    const fullName = screen.findByText(/Felipe Gabriel Costa de Oliveira/i);
+
+    expect(fullName).not.toBeNull();
   });
-
-  const fullName = screen.findByText(/Felipe Gabriel Costa de Oliveira/i);
-
-  expect(fullName).not.toBeNull();
 });
