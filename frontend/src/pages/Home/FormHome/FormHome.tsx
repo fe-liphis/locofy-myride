@@ -110,17 +110,21 @@ function FormHome() {
           },
           body: JSON.stringify({ ...data, id: "1" }),
         });
+        const dataRes = await res.json();
+        console.log(dataRes);
         return res;
       }
 
       const res = await postData();
+      console.log(res);
 
       if (res.ok) {
         reset();
-        setError(false);
         setSelectedCountrie("");
+        setSelectedCity("");
         setCities([]);
         setRegisterDriver(false);
+        setError(false);
       } else {
         setError(true);
       }
@@ -147,7 +151,6 @@ function FormHome() {
   }
 
   function handleOnSubmitNewCar() {
-    setSelectedCity("");
     setRegisterDriver(true);
   }
 

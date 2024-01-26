@@ -10,7 +10,7 @@ export const FormSuccessContainer = styled.section`
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
   margin-bottom: 100px;
 `;
 
@@ -45,8 +45,7 @@ export const InfosContainer = styled.div`
 
 export const InfoTitle = styled.h5`
   color: ${(props) => props.theme.fonts.palette.secondary};
-  font-size: ${(props) => props.theme.fonts.size.ml};
-  font-weight: ${(props) => props.theme.fonts.weight.lg};
+  font-size: ${(props) => props.theme.fonts.size.m};
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid ${(props) => props.theme.fonts.palette.secondary};
@@ -66,7 +65,6 @@ export const InfoControl = styled.div`
 
 export const ContentContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 25px;
 `;

@@ -83,12 +83,12 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
     <FormSuccessContainer>
       {fetching && (
         <FetchingContainer>
-          <FetchingTitle>Fetching driver dates</FetchingTitle>
+          <FetchingTitle>Fetching driver data</FetchingTitle>
           <Progress />
         </FetchingContainer>
       )}
 
-      {!fetching && error && (
+      {!fetching && error && !data && (
         <Modal fn={handleCloseModal} initialOpen={error}>
           <ModalTitle>An error occurred to fetch the data</ModalTitle>
           <img
@@ -98,7 +98,7 @@ function FormSucess({ handleOnClick }: FormSuccessProps) {
         </Modal>
       )}
 
-      {!fetching && !error && (
+      {!fetching && !error && data && (
         <>
           <FormSuccessTitleWrapper>
             <Check />
