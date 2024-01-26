@@ -7,6 +7,7 @@ function Error() {
       height="17"
       fill="none"
       viewBox="0 0 16 17"
+      aria-label="Error Icon"
     >
       <path fill="url(#pattern0)" d="M0 0.734H16V16.734H0z"></path>
       <defs>

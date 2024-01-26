@@ -8,13 +8,13 @@ function MenuButtons() {
   return (
     <MenuButtonsContainer>
       <IconButton>
-        <img src={bell_icon} alt="Sino com uma notificação" />
+        <img src={bell_icon} alt="Bell with a notification" />
       </IconButton>
       <SeparatorMenu />
       <IconButton>
         <img
           src={user_avatar}
-          alt="Foto de perfil de uma mulher com fundo azul e blusa amarela"
+          alt="Profile photo of a woman with a blue background and yellow blouse"
         />
       </IconButton>
     </MenuButtonsContainer>

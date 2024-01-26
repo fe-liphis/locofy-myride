@@ -18,7 +18,10 @@ function FindDriver() {
 
   return (
     <FindDriverContainer>
-      <img src={findDriver} alt="" />
+      <img
+        src={findDriver}
+        alt="Street with a highlighted yellow car and a yellow my ride logo on top"
+      />
       <div>
         <FindDriverSubTitle>Need a ride?</FindDriverSubTitle>
         <FindDriverTitle>
@@ -94,6 +97,7 @@ function FindDriver() {
             }}
           />
           <ButtonFindDriver
+            aria-label="find a driver"
             startIcon={
               <svg
                 width="24"

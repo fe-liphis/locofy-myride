@@ -23,19 +23,13 @@ function Footer() {
         </FooterSubtitle>
         <FooterSocialsContainer>
           <li>
-            <a href="">
-              <img src={face_logo} alt="Facebook Logo" />
-            </a>
+            <img src={face_logo} alt="Facebook Logo" />
           </li>
           <li>
-            <a href="">
-              <img src={instagram_logo} alt="Instagram Logo" />
-            </a>
+            <img src={instagram_logo} alt="Instagram Logo" />
           </li>
           <li>
-            <a href="">
-              <img src={twitter_logo} alt="Twitter Logo" />
-            </a>
+            <img src={twitter_logo} alt="Twitter Logo" />
           </li>
         </FooterSocialsContainer>
       </FooterArticleContainer>

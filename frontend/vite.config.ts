@@ -1,15 +1,14 @@
-import react from "@vitejs/plugin-react";
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    globals: {
-      "ts-jest": {
-        tsconfig: "path/to/tsconfig.json",
-      },
-    },
+    globals: true,
     environment: "jsdom",
-    setupFilesAfterEnv: ["./setupTests.js"],
+    setupFiles: "./setupTest.ts",
   },
 });

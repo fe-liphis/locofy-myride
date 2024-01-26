@@ -6,7 +6,7 @@ const IconImg = styled.img`
 `;
 
 function Check() {
-  return <IconImg src={check_icon} />;
+  return <IconImg src={check_icon} alt="Ok Icon" />;
 }
 
 export default Check;
