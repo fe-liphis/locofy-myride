@@ -37,6 +37,7 @@ import ModalTemplate from "../../../components/Modal/Modal";
 
 import error_img from "../../../assets/send_error.png";
 import axios from "axios";
+import Input from "../../../components/UI/Input/Input";
 
 export type FormValues = {
   fullName: string;
@@ -171,28 +172,18 @@ function FormHome() {
                 </FormHomeParagraph>
               </div>
             </FormHeader>
-            <FormControlInput>
-              <TextFieldStyled
-                id="fullName"
-                label="Full Name"
-                error={errors.fullName ? true : false}
-                {...register("fullName")}
-              />
-              {errors.fullName && (
-                <ErrorForm label={errors.fullName?.message || "Invalid name"} />
-              )}
-            </FormControlInput>
-            <FormControlInput>
-              <TextFieldStyled
-                id="email"
-                label="Email"
-                error={errors.email ? true : false}
-                {...register("email")}
-              />
-              {errors.fullName && (
-                <ErrorForm label={errors.email?.message || "Invalid email"} />
-              )}
-            </FormControlInput>
+            <Input
+              id="fullName"
+              label="Full Name"
+              error={errors.fullName}
+              register={register}
+            />
+            <Input
+              id="email"
+              label="Email"
+              error={errors.email}
+              register={register}
+            />
             <FormControlInput>
               <FormControlSelect error={errors.country ? true : false}>
                 <InputLabel id="country-label">Country</InputLabel>
@@ -256,22 +247,20 @@ function FormHome() {
               </FormControlSelect>
               {errors.city && <ErrorForm label={"Invalid city"} />}
             </FormControlInput>
-            <FormControlInput>
-              <TextFieldStyled
-                id="code"
-                label="Referal Code"
-                error={errors.code ? true : false}
-                {...register("code")}
-              />
-              {errors.code && (
-                <ErrorForm label={errors.code?.message || "Invalid code"} />
-              )}
-            </FormControlInput>
+
+            <Input
+              id="code"
+              label="Referal Code"
+              error={errors.code}
+              register={register}
+            />
+
             <FieldsetContainer aria-label="fieldset">
-              <FieldsetLegend>I drive my own car</FieldsetLegend>
+              <FieldsetLegend id="myOwnCar">I drive my own car</FieldsetLegend>
               <Switch
                 checked={carTypeChecked}
                 onChange={onChangeSwitchHandler}
+                aria-labelledby="myOwnCar"
                 inputProps={{ "aria-label": "controlled" }}
               />
             </FieldsetContainer>

@@ -24,8 +24,6 @@ type FormSuccessProps = {
 };
 
 function FormSucess({ handleOnClick, data }: FormSuccessProps) {
-  console.log(data);
-
   return (
     <FormSuccessContainer>
       <FormSuccessTitleWrapper>
