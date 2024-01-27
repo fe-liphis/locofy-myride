@@ -8,9 +8,7 @@ function NavBar() {
           <NavItem to="/">Home</NavItem>
         </li>
         <li>
-          <NavItem to="/taxi" onClick={(e) => e.preventDefault()}>
-            Getting a Taxi
-          </NavItem>
+          <NavItem to="/getting-taxi">Getting a Taxi</NavItem>
         </li>
         <li>
           <NavItem to="/mobile-app" onClick={(e) => e.preventDefault()}>
