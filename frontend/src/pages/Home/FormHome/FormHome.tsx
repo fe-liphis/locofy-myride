@@ -345,7 +345,7 @@ function FormHome() {
           </FormHomeContainer>
         </>
       ) : (
-        <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
+        data && <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
       )}
     </>
   );
