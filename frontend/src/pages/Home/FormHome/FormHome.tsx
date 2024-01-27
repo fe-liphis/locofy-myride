@@ -36,6 +36,7 @@ import jsonCountriesAndCities from "../../../utils/countriesAndCities.json";
 import ModalTemplate from "../../../components/Modal/Modal";
 
 import error_img from "../../../assets/send_error.png";
+import axios from "axios";
 
 export type FormValues = {
   fullName: string;
@@ -54,6 +55,7 @@ function FormHome() {
   const [cities, setCities] = useState<Array<string>>([]);
   const [selectedCountry, setSelectedCountrie] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
+  const [data, setData] = useState<FormValues>();
 
   const [registerDriver, setRegisterDriver] = useState(true);
 
@@ -101,24 +103,14 @@ function FormHome() {
       data.carType = "Car type not selected";
     }
 
-    async function postDriverData() {
-      async function postData() {
-        const res = await fetch("http://localhost:3000/driver", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...data, id: "1" }),
-        });
-        const dataRes = await res.json();
-        console.log(dataRes);
-        return res;
-      }
-
-      const res = await postData();
+    axios({
+      method: "POST",
+      url: "http://localhost:3000/driver",
+      data,
+    }).then((res) => {
       console.log(res);
-
-      if (res.ok) {
+      if (res.status === 201) {
+        setData(res.data);
         reset();
         setSelectedCountrie("");
         setSelectedCity("");
@@ -128,9 +120,7 @@ function FormHome() {
       } else {
         setError(true);
       }
-    }
-
-    postDriverData();
+    });
   }
 
   function handleChangeCountries(event: SelectChangeEvent) {
@@ -355,7 +345,7 @@ function FormHome() {
           </FormHomeContainer>
         </>
       ) : (
-        <FormSucess handleOnClick={handleOnSubmitNewCar} />
+        <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
       )}
     </>
   );
