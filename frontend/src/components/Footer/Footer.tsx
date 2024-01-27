@@ -12,12 +12,15 @@ import {
 import face_logo from "../../assets/Facebook.svg";
 import instagram_logo from "../../assets/instagram_logo.svg";
 import twitter_logo from "../../assets/twitter_logo.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <FooterContainer>
       <FooterArticleContainer>
-        <Logo color="#FFFFFF" height="60.13" width="125.63" />
+        <Link to={"/"} aria-label="Redirect to home">
+          <Logo color="#FFFFFF" height="60.13" width="125.63" />
+        </Link>
         <FooterSubtitle>
           MyRide Inc., 2nd Floor, New York, NY 10016
         </FooterSubtitle>
