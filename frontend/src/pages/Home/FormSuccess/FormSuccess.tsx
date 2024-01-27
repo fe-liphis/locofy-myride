@@ -4,8 +4,6 @@ import getFirstName from "../../../utils/getFirstName";
 
 import {
   ContentContainer,
-  FetchingContainer,
-  FetchingTitle,
   FigureContainer,
   FormSuccessButton,
   FormSuccessContainer,
@@ -15,17 +13,10 @@ import {
   InfoDescription,
   InfoTitle,
   InfosContainer,
-  Progress,
 } from "./styles";
 
 import success_img from "../../../assets/success_image.png";
-import { useEffect, useState } from "react";
-import Modal from "../../../components/Modal/Modal";
 import getCarType from "../../../utils/getCarType";
-
-import { ModalTitle } from "../FormHome/styles";
-
-import error_img from "../../../assets/fetch_error.png";
 
 type FormSuccessProps = {
   handleOnClick: () => void;
