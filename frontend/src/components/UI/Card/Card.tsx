@@ -33,7 +33,12 @@ function Card({
       <CardContentWrapper>
         <CardTitle>{title}</CardTitle>
         <CardParagraph>{text}</CardParagraph>
-        <CardButton onClick={handleOnClick}>{buttonText}</CardButton>
+        <CardButton
+          onClick={handleOnClick}
+          aria-label={`${buttonText} ${title} car`}
+        >
+          {buttonText}
+        </CardButton>
       </CardContentWrapper>
     </CardContainer>
   );
