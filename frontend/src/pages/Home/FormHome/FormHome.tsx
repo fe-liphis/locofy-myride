@@ -169,7 +169,10 @@ function FormHome() {
           )}
           <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
             <FormHeader>
-              <img src={form_image} alt="" />
+              <img
+                src={form_image}
+                alt="This image depicts a stylized scene where a person is standing next to a yellow car, with buildings and clouds in the background. The word “RIDE” is displayed above the buildings. This might be related to a ride-sharing or a taxi service."
+              />
               <div>
                 <FormHomeTitle>Drive with MyRide</FormHomeTitle>
                 <FormHomeParagraph>
