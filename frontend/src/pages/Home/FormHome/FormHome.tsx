@@ -10,13 +10,10 @@ import {
   FormHomeTitle,
   ModalTitle,
 } from "./styles";
-
 import form_image from "../../../assets/form_image.png";
 import Switch from "../../../components/UI/Switch/Switch";
 import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
-import { InputLabel, MenuItem } from "@mui/material";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -27,25 +24,23 @@ import Sedan from "../../../components/UI/Svgs/TypeCar/Sedan";
 import SuvVan from "../../../components/UI/Svgs/TypeCar/SuvVan";
 import SemiLuxury from "../../../components/UI/Svgs/TypeCar/SemiLuxury";
 import LuxuryCar from "../../../components/UI/Svgs/TypeCar/LuxuryCar";
-
 import jsonCountriesAndCities from "../../../utils/countriesAndCities.json";
 import ModalTemplate from "../../../components/Modal/Modal";
-
 import error_img from "../../../assets/send_error.png";
 import axios from "axios";
 import Input from "../../../components/UI/Input/Input";
 import Select from "../../../components/UI/Select/Select";
-import { FormValues } from "./types/FormValues";
+import { Cities, Countries, FormValues } from "./types/FormValues";
 
 function FormHome() {
   const [carTypeChecked, setCarTypeChecked] = useState(true);
-  const [cities, setCities] = useState<Array<string>>([]);
+  const [cities, setCities] = useState<Cities>([]);
   const [data, setData] = useState<FormValues>();
   const [registerDriver, setRegisterDriver] = useState(true);
   const [error, setError] = useState(false);
 
   const countriesAndCities = jsonCountriesAndCities;
-  const countries = Object.keys(countriesAndCities);
+  const countries: Countries = Object.keys(countriesAndCities);
 
   const schema = z.object({
     fullName: z
@@ -76,7 +71,7 @@ function FormHome() {
     watch,
   } = form;
 
-  const watchCountry = watch("country", "");
+  const watchCountry: Countries = watch("country", "");
 
   useEffect(() => {
     if (watchCountry) {
