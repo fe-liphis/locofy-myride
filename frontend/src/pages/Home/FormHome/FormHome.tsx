@@ -78,9 +78,6 @@ function FormHome() {
 
   const watchCountry = watch("country", "");
 
-  console.log(watchCountry);
-  console.log(cities);
-
   useEffect(() => {
     if (watchCountry) {
       setCities(countriesAndCities[watchCountry]);
