@@ -17,13 +17,10 @@ import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
 import { InputLabel, MenuItem } from "@mui/material";
 
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
-import { FormControlSelect } from "../../../components/UI/Select/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "../FormSuccess/FormSuccess";
 import Sedan from "../../../components/UI/Svgs/TypeCar/Sedan";
@@ -37,29 +34,18 @@ import ModalTemplate from "../../../components/Modal/Modal";
 import error_img from "../../../assets/send_error.png";
 import axios from "axios";
 import Input from "../../../components/UI/Input/Input";
-
-export type FormValues = {
-  fullName: string;
-  email: string;
-  country: string;
-  city: string;
-  code: string;
-  carType: string;
-};
+import Select from "../../../components/UI/Select/Select";
+import { FormValues } from "./types/FormValues";
 
 function FormHome() {
   const [carTypeChecked, setCarTypeChecked] = useState(true);
-  const [countriesAndCities, setCountriesAndCities] =
-    useState<typeof jsonCountriesAndCities>();
-  const [countries, setCountries] = useState<Array<string>>([]);
   const [cities, setCities] = useState<Array<string>>([]);
-  const [selectedCountry, setSelectedCountrie] = useState<string>("");
-  const [selectedCity, setSelectedCity] = useState<string>("");
   const [data, setData] = useState<FormValues>();
-
   const [registerDriver, setRegisterDriver] = useState(true);
-
   const [error, setError] = useState(false);
+
+  const countriesAndCities = jsonCountriesAndCities;
+  const countries = Object.keys(countriesAndCities);
 
   const schema = z.object({
     fullName: z
@@ -78,9 +64,6 @@ function FormHome() {
   });
 
   const form = useForm<FormValues>({
-    defaultValues: {
-      carType: "",
-    },
     resolver: zodResolver(schema),
   });
 
@@ -90,13 +73,19 @@ function FormHome() {
     formState: { errors },
     handleSubmit,
     register,
+    watch,
   } = form;
 
+  const watchCountry = watch("country", "");
+
+  console.log(watchCountry);
+  console.log(cities);
+
   useEffect(() => {
-    setCountriesAndCities(jsonCountriesAndCities);
-    const countriesKeys = Object.keys(jsonCountriesAndCities);
-    setCountries(countriesKeys);
-  }, []);
+    if (watchCountry) {
+      setCities(countriesAndCities[watchCountry]);
+    }
+  }, [watchCountry, countriesAndCities]);
 
   function onSubmit(data: FormValues) {
     if (!carTypeChecked) {
@@ -112,8 +101,6 @@ function FormHome() {
       if (res.status === 201) {
         setData(res.data);
         reset();
-        setSelectedCountrie("");
-        setSelectedCity("");
         setCities([]);
         setRegisterDriver(false);
         setError(false);
@@ -121,19 +108,6 @@ function FormHome() {
         setError(true);
       }
     });
-  }
-
-  function handleChangeCountries(event: SelectChangeEvent) {
-    const country = event.target.value as string;
-    setSelectedCountrie(country);
-
-    const cities = countriesAndCities[country];
-    setCities(cities);
-  }
-
-  function handleChangeCity(event: SelectChangeEvent) {
-    const city = event.target.value;
-    setSelectedCity(city);
   }
 
   function onChangeSwitchHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -183,77 +157,27 @@ function FormHome() {
               error={errors.email}
               register={register}
             />
-            <FormControlInput>
-              <FormControlSelect error={errors.country ? true : false}>
-                <InputLabel id="country-label">Country</InputLabel>
-                <Controller
-                  name="country"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      labelId="country-label"
-                      aria-labelledby="country-label"
-                      id={"country"}
-                      label="Country"
-                      value={selectedCountry}
-                      error={errors.country ? true : false}
-                      onChange={(e) => {
-                        handleChangeCountries(e);
-                        field.onChange(e);
-                      }}
-                    >
-                      {countries.map((country, index) => (
-                        <MenuItem value={country} key={index}>
-                          {country}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-              </FormControlSelect>
-              {errors.country && <ErrorForm label={"Invalid country"} />}
-            </FormControlInput>
-            <FormControlInput>
-              <FormControlSelect error={errors.city ? true : false}>
-                <InputLabel id="city-label">City</InputLabel>
-                <Controller
-                  name="city"
-                  control={control}
-                  render={({ field }) => (
-                    <>
-                      <Select
-                        aria-labelledby="city-label"
-                        labelId="city-label"
-                        id="city"
-                        label="City"
-                        value={selectedCity}
-                        disabled={selectedCountry === "" ? true : false}
-                        error={errors.city ? true : false}
-                        onChange={(e) => {
-                          handleChangeCity(e);
-                          field.onChange(e);
-                        }}
-                      >
-                        {cities.map((city, index) => (
-                          <MenuItem value={city} key={index}>
-                            {city}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </>
-                  )}
-                />
-              </FormControlSelect>
-              {errors.city && <ErrorForm label={"Invalid city"} />}
-            </FormControlInput>
-
+            <Select
+              id="country"
+              control={control}
+              label="Country"
+              options={countries}
+              error={errors.country}
+            />
+            <Select
+              id="city"
+              control={control}
+              label="City"
+              options={cities}
+              disabled={watchCountry ? false : true}
+              error={errors.city}
+            />
             <Input
               id="code"
               label="Referal Code"
               error={errors.code}
               register={register}
             />
-
             <FieldsetContainer aria-label="fieldset">
               <FieldsetLegend id="myOwnCar">I drive my own car</FieldsetLegend>
               <Switch

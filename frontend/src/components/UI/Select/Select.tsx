@@ -16,9 +16,11 @@ type SelectProps = {
   };
   control: Control;
   options: string[];
+  props: React.FC;
+  disabled: boolean;
 } & SelectInputProps;
 
-function Select({ id, label, error, control, options }: SelectProps) {
+function Select({ id, label, error, control, options, ...props }: SelectProps) {
   const [option, setOption] = useState("");
 
   function onChangeOptionHandler(event: SelectChangeEvent) {
@@ -41,6 +43,7 @@ function Select({ id, label, error, control, options }: SelectProps) {
               label={label}
               value={option}
               error={error ? true : false}
+              {...props}
               onChange={(e) => {
                 onChangeOptionHandler(e);
                 field.onChange(e);
