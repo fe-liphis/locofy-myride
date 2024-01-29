@@ -1,32 +1,32 @@
-import { z } from "zod";
+import * as yup from "yup";
 
-const schema = z.object({
-  fullName: z
-    .string()
-    .min(10, "Invalid name")
-    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name"),
-  email: z.string().min(1, "Invalid email").email("Invalid email"),
-  country: z.string().min(1, "Invalid country"),
-  city: z.string().min(1, "Invalid city"),
-  code: z.string().regex(/^[A-Z]{3}-\d{3}$/, "Invalid code"),
-  myOwnCar: z.literal(false),
-  carType: z.string().default("Car type not selected"),
-});
-
-const CarTypeSchema = z.object({
-  fullName: z
-    .string()
-    .min(10, "Invalid name")
-    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name"),
-  email: z.string().min(1, "Invalid email").email("Invalid email"),
-  country: z.string().min(1, "Invalid country"),
-  city: z.string().min(1, "Invalid city"),
-  code: z.string().regex(/^[A-Z]{3}-\d{3}$/, "Invalid code"),
-  myOwnCar: z.literal(true),
-  carType: z.string().min(1, "Invalid car type"),
-});
-
-export const FormSchema = z.discriminatedUnion("myOwnCar", [
-  schema,
-  CarTypeSchema,
-]);
+export const FormSchema = yup
+  .object({
+    fullName: yup
+      .string()
+      .matches(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name")
+      .required(),
+    email: yup
+      .string()
+      .matches(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        "Invalid email"
+      )
+      .email()
+      .required("Email required"),
+    country: yup.string().required("Invalid country"),
+    city: yup.string().required("Invalid city"),
+    code: yup
+      .string()
+      .matches(/^[a-zA-Z]{3}-\d{3}$/, "Invalid referal code")
+      .required(),
+    myOwnCar: yup
+      .boolean()
+      .transform((originalValue) => originalValue || false),
+    carType: yup.string().when("myOwnCar", {
+      is: true,
+      then: (schema) => schema.required("Select a vehicle type"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  })
+  .required();

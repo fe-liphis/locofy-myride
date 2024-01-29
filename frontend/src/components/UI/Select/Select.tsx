@@ -58,7 +58,7 @@ function Select({ id, label, error, control, options, ...props }: SelectProps) {
           )}
         />
       </FormControlSelect>
-      {error && <ErrorForm label={`Invalid ${label}`} />}
+      {error && <ErrorForm label={error.message || `Invalid ${label}`} />}
     </FormControlInput>
   );
 }

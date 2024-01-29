@@ -1,7 +1,5 @@
-import { FormValues } from "../FormHome/FormHome";
 import Check from "../../../components/UI/Svgs/Check";
 import getFirstName from "../../../utils/getFirstName";
-
 import {
   ContentContainer,
   FigureContainer,
@@ -14,9 +12,9 @@ import {
   InfoTitle,
   InfosContainer,
 } from "./styles";
-
 import success_img from "../../../assets/success_image.png";
 import getCarType from "../../../utils/getCarType";
+import { FormValues } from "../FormHome/types/FormValues";
 
 type FormSuccessProps = {
   handleOnClick: () => void;

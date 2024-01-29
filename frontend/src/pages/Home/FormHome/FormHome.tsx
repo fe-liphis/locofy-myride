@@ -15,7 +15,6 @@ import Switch from "../../../components/UI/Switch/Switch";
 import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "../FormSuccess/FormSuccess";
@@ -31,6 +30,7 @@ import Input from "../../../components/UI/Input/Input";
 import Select from "../../../components/UI/Select/Select";
 import { Cities, Countries, FormValues } from "./types/FormValues";
 import { FormSchema } from "./FormSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function FormHome() {
   const [cities, setCities] = useState<Cities>([]);
@@ -45,7 +45,7 @@ function FormHome() {
     defaultValues: {
       carType: "",
     },
-    resolver: zodResolver(FormSchema),
+    resolver: yupResolver(FormSchema),
   });
 
   const {
@@ -86,6 +86,7 @@ function FormHome() {
         setError(false);
       })
       .catch((err) => {
+        console.log(err);
         setError(true);
       });
   }
