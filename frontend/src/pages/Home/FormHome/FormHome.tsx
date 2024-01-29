@@ -69,16 +69,16 @@ function FormHome() {
   }, [watchCountry, countriesAndCities]);
 
   function onSubmit(data: FormValues) {
-    if (watchMyOwnCar) {
+    if (!watchMyOwnCar) {
       data.carType = "Car type not selected";
     }
 
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/drivr",
-      data,
-    })
+    axios
+      .post("http://localhost:3000/driver", {
+        ...data,
+      })
       .then((res) => {
+        console.log(res);
         setData(res.data);
         reset();
         setCities([]);
@@ -233,7 +233,7 @@ function FormHome() {
           </FormHomeContainer>
         </>
       ) : (
-        data && <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
+        <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
       )}
     </>
   );

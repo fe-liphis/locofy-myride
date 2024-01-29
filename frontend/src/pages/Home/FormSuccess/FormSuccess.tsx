@@ -24,13 +24,13 @@ type FormSuccessProps = {
 };
 
 function FormSucess({ handleOnClick, data }: FormSuccessProps) {
+  const firstName = getFirstName(data.fullName);
+
   return (
     <FormSuccessContainer>
       <FormSuccessTitleWrapper>
         <Check />
-        <FormSuccessTitle>
-          Welcome, {getFirstName(data?.fullName)}
-        </FormSuccessTitle>
+        <FormSuccessTitle>Welcome, {firstName}</FormSuccessTitle>
       </FormSuccessTitleWrapper>
       <ContentContainer>
         <InfosContainer>
