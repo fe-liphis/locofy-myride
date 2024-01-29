@@ -75,20 +75,19 @@ function FormHome() {
 
     axios({
       method: "POST",
-      url: "http://localhost:3000/driver",
+      url: "http://localhost:3000/drivr",
       data,
-    }).then((res) => {
-      console.log(res);
-      if (res.status === 201) {
+    })
+      .then((res) => {
         setData(res.data);
         reset();
         setCities([]);
         setRegisterDriver(false);
         setError(false);
-      } else {
+      })
+      .catch((err) => {
         setError(true);
-      }
-    });
+      });
   }
 
   function handleOnSubmitNewCar() {
