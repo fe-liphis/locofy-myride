@@ -45,8 +45,8 @@ function Select({ id, label, error, control, options, ...props }: SelectProps) {
               error={error ? true : false}
               {...props}
               onChange={(e) => {
-                onChangeOptionHandler(e);
-                field.onChange(e);
+                onChangeOptionHandler(e as SelectChangeEvent);
+                field.onChange(e as SelectChangeEvent);
               }}
             >
               {options.map((option, index) => (
