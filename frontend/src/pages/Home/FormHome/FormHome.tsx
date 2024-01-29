@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 import Button from "../../../components/UI/Button/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { GroupRadio } from "../../../components/UI/InputRadio/styles";
 import ErrorForm from "../../../components/UI/ErrorForm/ErrorForm";
 import FormSucess from "../FormSuccess/FormSuccess";
@@ -31,9 +30,9 @@ import axios from "axios";
 import Input from "../../../components/UI/Input/Input";
 import Select from "../../../components/UI/Select/Select";
 import { Cities, Countries, FormValues } from "./types/FormValues";
+import { FormSchema } from "./FormSchema";
 
 function FormHome() {
-  const [carTypeChecked, setCarTypeChecked] = useState(true);
   const [cities, setCities] = useState<Cities>([]);
   const [data, setData] = useState<FormValues>();
   const [registerDriver, setRegisterDriver] = useState(true);
@@ -42,24 +41,11 @@ function FormHome() {
   const countriesAndCities = jsonCountriesAndCities;
   const countries: Countries = Object.keys(countriesAndCities);
 
-  const schema = z.object({
-    fullName: z
-      .string()
-      .min(10, "Invalid name")
-      .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name"),
-    email: z.string().min(1, "Invalid email").email("Invalid email"),
-    country: z.string().min(1, "Invalid country"),
-    city: z.string().min(1, "Invalid city"),
-    code: z.string().regex(/^[A-Z]{3}-\d{3}$/, "Invalid code"),
-    carType: z
-      .string()
-      .refine((data: string) => !carTypeChecked || data !== "", {
-        message: "Invalid car type",
-      }),
-  });
-
   const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    defaultValues: {
+      carType: "",
+    },
+    resolver: zodResolver(FormSchema),
   });
 
   const {
@@ -71,7 +57,10 @@ function FormHome() {
     watch,
   } = form;
 
+  console.log(errors);
+
   const watchCountry: Countries = watch("country", "");
+  const watchMyOwnCar: boolean = watch("myOwnCar");
 
   useEffect(() => {
     if (watchCountry) {
@@ -80,7 +69,7 @@ function FormHome() {
   }, [watchCountry, countriesAndCities]);
 
   function onSubmit(data: FormValues) {
-    if (!carTypeChecked) {
+    if (watchMyOwnCar) {
       data.carType = "Car type not selected";
     }
 
@@ -100,10 +89,6 @@ function FormHome() {
         setError(true);
       }
     });
-  }
-
-  function onChangeSwitchHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setCarTypeChecked(event.target.checked);
   }
 
   function handleOnSubmitNewCar() {
@@ -173,13 +158,13 @@ function FormHome() {
             <FieldsetContainer aria-label="fieldset">
               <FieldsetLegend id="myOwnCar">I drive my own car</FieldsetLegend>
               <Switch
-                checked={carTypeChecked}
-                onChange={onChangeSwitchHandler}
                 aria-labelledby="myOwnCar"
                 inputProps={{ "aria-label": "controlled" }}
+                id={"myOwnCar"}
+                register={register}
               />
             </FieldsetContainer>
-            {carTypeChecked && (
+            {watchMyOwnCar && (
               <>
                 <FormControlInput>
                   <CarTypeLabel>Select your car type</CarTypeLabel>
