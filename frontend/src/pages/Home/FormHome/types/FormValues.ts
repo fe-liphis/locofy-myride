@@ -6,8 +6,8 @@ export type FormValues = {
   country: string;
   city: string;
   code: string;
-  carType: string;
   myOwnCar: boolean;
+  carType: string;
 };
 
 export type CountriesAndCities = typeof jsonCountriesAndCities;

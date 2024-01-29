@@ -28,7 +28,12 @@ import error_img from "../../../assets/send_error.png";
 import axios from "axios";
 import Input from "../../../components/UI/Input/Input";
 import Select from "../../../components/UI/Select/Select";
-import { Cities, Countries, FormValues } from "./types/FormValues";
+import {
+  Cities,
+  Countries,
+  CountriesAndCities,
+  FormValues,
+} from "./types/FormValues";
 import { FormSchema } from "./FormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -38,8 +43,8 @@ function FormHome() {
   const [registerDriver, setRegisterDriver] = useState(true);
   const [error, setError] = useState(false);
 
-  const countriesAndCities = jsonCountriesAndCities;
-  const countries: Countries = Object.keys(countriesAndCities);
+  const countriesAndCities: CountriesAndCities = jsonCountriesAndCities;
+  const countries = Object.keys(countriesAndCities);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -56,8 +61,6 @@ function FormHome() {
     register,
     watch,
   } = form;
-
-  console.log(errors);
 
   const watchCountry: Countries = watch("country", "");
   const watchMyOwnCar: boolean = watch("myOwnCar");
@@ -78,7 +81,6 @@ function FormHome() {
         ...data,
       })
       .then((res) => {
-        console.log(res);
         setData(res.data);
         reset();
         setCities([]);
@@ -97,17 +99,17 @@ function FormHome() {
 
   return (
     <>
+      {error && (
+        <ModalTemplate initialOpen={error} fn={() => setError(false)}>
+          <ModalTitle>An error occurred to send the data</ModalTitle>
+          <img
+            src={error_img}
+            alt="A cartoon image of a yellow car in repair for an error screen"
+          />
+        </ModalTemplate>
+      )}
       {registerDriver ? (
         <>
-          {error && (
-            <ModalTemplate initialOpen={error} fn={() => setError(false)}>
-              <ModalTitle>An error occurred to send the data</ModalTitle>
-              <img
-                src={error_img}
-                alt="A cartoon image of a yellow car in repair for an error screen"
-              />
-            </ModalTemplate>
-          )}
           <FormHomeContainer onSubmit={handleSubmit(onSubmit)}>
             <FormHeader>
               <img
@@ -234,7 +236,7 @@ function FormHome() {
           </FormHomeContainer>
         </>
       ) : (
-        <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
+        data && <FormSucess handleOnClick={handleOnSubmitNewCar} data={data} />
       )}
     </>
   );

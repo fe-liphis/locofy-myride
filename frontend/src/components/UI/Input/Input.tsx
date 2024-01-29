@@ -3,12 +3,12 @@ import { FormControlInput } from "../../../pages/Home/FormHome/styles";
 import ErrorForm from "../ErrorForm/ErrorForm";
 import { TextFieldStyled } from "./styles";
 import { FieldError, Path, UseFormRegister } from "react-hook-form";
-import { FormValues } from "../../../pages/Home/FormHome/FormHome";
+import { FormValues } from "../../../pages/Home/FormHome/types/FormValues";
 
 type InputProps = {
   id: Path<FormValues>;
   label: string;
-  error?: FieldError | null;
+  error?: FieldError;
   register?: UseFormRegister<FormValues>;
 } & TextFieldProps;
 
@@ -21,7 +21,7 @@ function Input({ id, label, error, register }: InputProps) {
         error={error ? true : false}
         {...(register ? register(id) : null)}
       />
-      {error && <ErrorForm label={error.message || `Invalid ${label}`} />}
+      {error && <ErrorForm label={error?.message || `Invalid ${label}`} />}
     </FormControlInput>
   );
 }
