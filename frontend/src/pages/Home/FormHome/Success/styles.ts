@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../components/UI/Button/Button";
+import Button from "../../../../components/UI/Button/Button";
 import { CircularProgress } from "@mui/material";
 
 export const FormSuccessContainer = styled.section`

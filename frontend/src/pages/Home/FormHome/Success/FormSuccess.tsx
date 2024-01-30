@@ -1,5 +1,5 @@
-import Check from "../../../components/UI/Svgs/Check";
-import getFirstName from "../../../utils/getFirstName";
+import Check from "../../../../components/UI/Svgs/Check";
+import getFirstName from "../../../../utils/getFirstName";
 import {
   ContentContainer,
   FigureContainer,
@@ -12,17 +12,20 @@ import {
   InfoTitle,
   InfosContainer,
 } from "./styles";
-import success_img from "../../../assets/success_image.png";
-import getCarType from "../../../utils/getCarType";
-import { FormValues } from "../FormHome/types/FormValues";
+import success_img from "../../../../assets/success_image.png";
 
-type FormSuccessProps = {
-  handleOnClick: () => void;
-  data: FormValues;
-};
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { showFormRegister } from "../../../../store/form/formSlice";
 
-function FormSucess({ handleOnClick, data }: FormSuccessProps) {
+function FormSuccess() {
+  const data = useAppSelector((state) => state.form.successData);
+  const dispatch = useAppDispatch();
+
   const firstName = getFirstName(data.fullName);
+
+  function onSubmitNewCarHandler() {
+    dispatch(showFormRegister());
+  }
 
   return (
     <FormSuccessContainer>
@@ -34,32 +37,32 @@ function FormSucess({ handleOnClick, data }: FormSuccessProps) {
         <InfosContainer>
           <InfoControl>
             <InfoTitle>Full Name</InfoTitle>
-            <InfoDescription>{data?.fullName}</InfoDescription>
+            <InfoDescription>{data.fullName}</InfoDescription>
           </InfoControl>
 
           <InfoControl>
             <InfoTitle>Email</InfoTitle>
-            <InfoDescription>{data?.email}</InfoDescription>
+            <InfoDescription>{data.email}</InfoDescription>
           </InfoControl>
 
           <InfoControl>
             <InfoTitle>Country</InfoTitle>
-            <InfoDescription>{data?.country}</InfoDescription>
+            <InfoDescription>{data.country}</InfoDescription>
           </InfoControl>
 
           <InfoControl>
             <InfoTitle>City</InfoTitle>
-            <InfoDescription>{data?.city}</InfoDescription>
+            <InfoDescription>{data.city}</InfoDescription>
           </InfoControl>
 
           <InfoControl>
             <InfoTitle>Referal Code</InfoTitle>
-            <InfoDescription>{data?.code}</InfoDescription>
+            <InfoDescription>{data.code}</InfoDescription>
           </InfoControl>
 
           <InfoControl>
             <InfoTitle>Car type</InfoTitle>
-            <InfoDescription>{getCarType(data?.carType)}</InfoDescription>
+            <InfoDescription>{data.carType}</InfoDescription>
           </InfoControl>
         </InfosContainer>
 
@@ -67,11 +70,11 @@ function FormSucess({ handleOnClick, data }: FormSuccessProps) {
           <img src={success_img} alt="Imagem de sucesso do formulário" />
         </FigureContainer>
       </ContentContainer>
-      <FormSuccessButton onClick={() => handleOnClick()}>
+      <FormSuccessButton onClick={() => onSubmitNewCarHandler()}>
         Submit a new car
       </FormSuccessButton>
     </FormSuccessContainer>
   );
 }
 
-export default FormSucess;
+export default FormSuccess;

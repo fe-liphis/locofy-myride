@@ -1,20 +1,21 @@
 import { InputLabel, MenuItem } from "@mui/material";
 import { FormControlSelect } from "./styles";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, Path } from "react-hook-form";
 
 import SelectMUI, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import ErrorForm from "../ErrorForm/ErrorForm";
 import { FormControlInput } from "../../../pages/Home/FormHome/styles";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
+import { FormValues } from "../../../pages/Home/FormHome/types/FormValues";
 
 type SelectProps = {
-  id: string;
+  id: Path<FormValues>;
   label: string;
   error: {
     message: string;
   };
-  control: Control;
+  control: Control<FormValues>;
   options: string[];
   props: React.FC;
   disabled: boolean;
