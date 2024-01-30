@@ -1,11 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  Cities,
-  Countries,
-  CountriesAndCities,
-  FormValues,
-} from "../types/FormValues";
+import { FormValues } from "../types/FormValues";
 import jsonCountriesAndCities from "../../../../utils/countriesAndCities.json";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -36,7 +31,11 @@ import Switch from "../../../../components/UI/Switch/Switch";
 import error_img from "../../../../assets/send_error.png";
 import form_image from "../../../../assets/form_image.png";
 import { useAppDispatch } from "../../../../store/hooks";
-import { setSuccessData, showFormSuccess } from "../../../../store/form/formSlice";
+import {
+  setSuccessData,
+  showFormSuccess,
+} from "../../../../store/form/formSlice";
+import InputRadio from "../../../../components/UI/InputRadio/InputRadio";
 
 function Form() {
   const [error, setError] = useState(false);
@@ -163,58 +162,38 @@ function Form() {
             <FormControlInput>
               <CarTypeLabel>Select your car type</CarTypeLabel>
               <CarTypeContainer>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"sedan"}
-                    value={"sedan"}
-                    aria-labelledby={"sedan-label"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"sedan"} id={"sedan-label"}>
-                    <Sedan />
-                    <span>Sedan</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"suvVan"}
-                    aria-labelledby={"suvVan-label"}
-                    value={"suvVan"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"suvVan"} id={"suvVan-label"}>
-                    <SuvVan />
-                    <span>SUV/Van</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"semiLuxury"}
-                    value={"semiLuxury"}
-                    aria-labelledby={"semiLuxury-label"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"semiLuxury"} id={"semiLuxury-label"}>
-                    <SemiLuxury />
-                    <span>Semi Luxury</span>
-                  </label>
-                </GroupRadio>
-                <GroupRadio>
-                  <input
-                    type="radio"
-                    id={"luxuryCar"}
-                    value={"luxuryCar"}
-                    aria-labelledby={"luxuryCar-label"}
-                    {...register("carType")}
-                  />
-                  <label htmlFor={"luxuryCar"} id={"luxuryCar-label"}>
-                    <LuxuryCar />
-                    <span>Luxury Car</span>
-                  </label>
-                </GroupRadio>
+                <InputRadio
+                  id="sedan"
+                  label="Sedan"
+                  value={"sedan"}
+                  name="carType"
+                  Icon={<Sedan />}
+                  register={register}
+                />
+                <InputRadio
+                  id="suvVan"
+                  label="SUV/Van"
+                  value={"suvVan"}
+                  name="carType"
+                  Icon={<SuvVan />}
+                  register={register}
+                />
+                <InputRadio
+                  id="semiLuxury"
+                  label="Semi Luxury"
+                  value={"semiLuxury"}
+                  name="carType"
+                  Icon={<SemiLuxury />}
+                  register={register}
+                />
+                <InputRadio
+                  id="luxuryCar"
+                  value={"luxuryCar"}
+                  name="carType"
+                  label="Luxury Car"
+                  Icon={<LuxuryCar />}
+                  register={register}
+                />
               </CarTypeContainer>
               {errors.carType && (
                 <ErrorForm
