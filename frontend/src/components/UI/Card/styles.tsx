@@ -40,4 +40,9 @@ export const CardButton = styled(Button)`
   }
 
   align-self: flex-end;
+
+  a {
+    color: ${(props) => props.theme.fonts.palette.secondary} !important;
+    text-decoration: none;
+  }
 `;
