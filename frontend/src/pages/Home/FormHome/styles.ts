@@ -4,12 +4,13 @@ export const FormHomeContainer = styled.form`
   background-color: ${(props) => props.theme.background.palette.secondary};
   padding: 30px;
   border-radius: 10px;
-  width: 90%;
+  width: var(100% - 30px);
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
   margin-bottom: 100px;
+  margin: 0 50px;
 `;
 
 export const FormHeader = styled.header`

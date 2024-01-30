@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  width: 20vw;
+  width: 100%;
   background-color: ${(props) => props.theme.background.palette.tertiary};
   height: 100%;
 

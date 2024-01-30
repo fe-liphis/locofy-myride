@@ -7,8 +7,12 @@ export const FindDriverContainer = styled.section`
   align-items: center;
   justify-content: center;
   gap: 42px;
-  margin: 74px 0;
+  margin: 74px 50px;
   margin-bottom: calc(74px + 59px);
+
+  img {
+    width: 50%;
+  }
 `;
 
 export const FindDriverTitle = styled.h2`
