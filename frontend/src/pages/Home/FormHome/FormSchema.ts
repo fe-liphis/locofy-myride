@@ -4,8 +4,9 @@ export const FormSchema = yup
   .object({
     fullName: yup
       .string()
-      .matches(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Invalid name")
-      .required(),
+      .min(10, "Invalid name")
+      .matches(/^[a-zA-Z]+(?: [a-zA-Z]+)+$/, "Invalid name")
+      .required("Invalid name"),
     email: yup
       .string()
       .matches(

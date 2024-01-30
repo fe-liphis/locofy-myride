@@ -20,7 +20,6 @@ import {
 import ModalTemplate from "../../../../components/Modal/Modal";
 import Input from "../../../../components/UI/Input/Input";
 import Select from "../../../../components/UI/Select/Select";
-import { GroupRadio } from "../../../../components/UI/InputRadio/styles";
 import Sedan from "../../../../components/UI/Svgs/TypeCar/Sedan";
 import SuvVan from "../../../../components/UI/Svgs/TypeCar/SuvVan";
 import SemiLuxury from "../../../../components/UI/Svgs/TypeCar/SemiLuxury";
@@ -36,6 +35,7 @@ import {
   showFormSuccess,
 } from "../../../../store/form/formSlice";
 import InputRadio from "../../../../components/UI/InputRadio/InputRadio";
+import { Cities, CountriesAndCities } from "../types/CountriesAndCities";
 
 function Form() {
   const [error, setError] = useState(false);
