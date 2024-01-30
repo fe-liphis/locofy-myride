@@ -12,6 +12,16 @@ export const FindDriverContainer = styled.section`
 
   img {
     width: 50%;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
@@ -20,6 +30,10 @@ export const FindDriverTitle = styled.h2`
   font-size: ${(props) => props.theme.fonts.size.xxxl};
   margin-bottom: 30px;
   font-weight: ${(props) => props.theme.fonts.weight.lg};
+
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
 `;
 
 export const FindDriverTitleStrong = styled.strong`

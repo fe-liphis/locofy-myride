@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ClassRidesContainer = styled.section`
   box-sizing: border-box;
-
   margin: 0 50px;
   margin-bottom: 100px;
 `;
